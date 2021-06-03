@@ -1,6 +1,6 @@
 import React from 'react'
-import { use} from "react-hook-form";
 import App from "../App";
+import StartMenu from "./StartMenu"
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,19 +8,27 @@ import {
     Link
 } from "react-router-dom";
 
+
 export default function InputPage() {
-    const [playerInput, setPlayerInput] = React.useState("")
+    const [name, setName] = React.useState("")
 
     return (
         <div>
             <label>Voer hier speler naam in</label>
-            <input onChange={(event) => setPlayerInput(event.target.value)}/>
+            <div><input className="mainInputStyling" value={name} onChange={(event) => setName(event.target.value)}/>
+            </div>
+            <button onClick={() => console.log("playername is set!:", name)}>Playerset</button>
 
+            <p>{name}</p>
 
-            <Link to="./App">Back</Link>
+            <Link to="/StartMenu">
+                <button id="backInputPage" className="mainButtonStyling">Back</button>
+            </Link>
             <Switch>
                 <Route path="/App"></Route>
             </Switch>
+
+
 
         </div>
     )

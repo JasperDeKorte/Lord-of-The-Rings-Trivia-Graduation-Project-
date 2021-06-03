@@ -8,6 +8,7 @@ Functionaliteit maken
   input page
     - [X] maak een invoer veld waar je de naam in kan voeren
     - [] zorg dat de naam kan worden gelogd
+    - [] moet een start button bevatten die het spel kan starten
     - [] 
 - Options button moet een options popup of naar page gaan.
   - [] maak een options pagina

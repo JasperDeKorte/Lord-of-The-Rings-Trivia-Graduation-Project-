@@ -6,32 +6,16 @@ import {
     Link
 } from "react-router-dom";
 import InputPage from "./pages/InputPage";
+import StartMenu from "./pages/StartMenu"
+import Options from "./pages/OptionsPage";
 
 export default function App() {
+
     return (
-        <Router>
-            <div>
-                <Link className="linkTestEdit" to="/InputPage">New Game</Link>
+        <>
+      <StartMenu />
 
-                <button onClick={() =>
-                    <Switch>
-                        <Route path="/InputPage">
-                            <InputPage />
-                        </Route>
-
-                    </Switch>
-                }>
-                    New Game
-                </button>
-
-                <Switch>
-                    <Route path="/InputPage">
-                        <InputPage />
-                    </Route>
-
-                </Switch>
-            </div>
-        </Router>
+        </>
     );
 }
 
