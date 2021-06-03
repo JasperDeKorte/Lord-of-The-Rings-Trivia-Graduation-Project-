@@ -1,11 +1,13 @@
 
 .startMenuDiv {
   display: flex;
+  width: 500px;
+  height: 1000px;
   border-style: solid;
 
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 
   
 }
