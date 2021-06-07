@@ -19,3 +19,9 @@ input page
 - moet een input hebben voor de playernaam
 - een start button die het spel start
 - en een terug knop naar het menu
+
+
+HighscorePage
+- Moet een funcite maken die de laatste opgegeven naam met het laatste spel
+opslaat in een variable op de Highscore pagina.
+  

@@ -10,6 +10,7 @@ import Inputpage from "./pages/InputPage";
 import OptionsPage from "./pages/OptionsPage";
 import Quiz from "./pages/Quiz"
 import logo from "./assets/LOTR.jpg";
+import Highscore from "./pages/HighscorePage";
 
 export default function App() {
 
@@ -28,6 +29,14 @@ export default function App() {
                                 <StartMenu />
                             </Route>
 
+                            <Route path="/Quiz">
+                                <Quiz />
+                            </Route>
+
+                            <Route path="/Highscore">
+                                <Highscore />
+                            </Route>
+
                             <Route path="/InputPage">
                                 <Inputpage/>
                             </Route>
@@ -35,6 +44,8 @@ export default function App() {
                             <Route path="/OptionsPage">
                                 <OptionsPage/>
                             </Route>
+
+
                         </Switch>
             </Router>
 

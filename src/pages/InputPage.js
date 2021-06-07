@@ -1,6 +1,4 @@
 import React from 'react'
-import App from "../App";
-import StartMenu from "./StartMenu"
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,9 +6,10 @@ import {
     Link,
     NavLink,
 } from "react-router-dom";
+import Quiz from "./Quiz"
 
 
-export default function InputPage() {
+export default function InputPage(props) {
     const [name, setName] = React.useState("")
 
     return (
@@ -20,18 +19,22 @@ export default function InputPage() {
                 <input className="mainInputStyling" value={name} onChange={(event) => setName(event.target.value)}/>
             </div>
 
-           <NavLink to="/Quiz">
+            <div>
+                <Link to="/">
+                    <button id="backInputPage" className="mainButtonStyling">Back</button>
+                </Link>
+
+                <Route exact path="/Quiz" component={name}>
+
+                </Route>
+
+           <NavLink to="/Quiz" >
                <button className="mainButtonStyling" onClick={() => console.log("playername is set!:", name)}>Playerset</button>
            </NavLink>
 
-            <div>
-            <Link to="/">
-                <button id="backInputPage" className="mainButtonStyling">Back</button>
-            </Link>
-            </div>
 
-            <h2>Jou naam:</h2>
-            <p>{name}</p>
+
+            </div>
 
         </div>
     )
