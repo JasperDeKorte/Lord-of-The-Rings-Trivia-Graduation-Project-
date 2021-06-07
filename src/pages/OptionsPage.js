@@ -18,12 +18,10 @@ export default function OptionsPage() {
 
 
 
-            <Link to="./pages/StartMenu">
-                <button>Back</button>
+            <Link to="/">
+                <button className="mainButtonStyling">Back</button>
             </Link>
-            <Switch>
-                <Route path="/App"></Route>
-            </Switch>
+
         </div>
     )
 }

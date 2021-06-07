@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Inputpage from "./InputPage"
 import OptionsPage from "./OptionsPage";
+import logo from '../assets/LOTR.jpg'
 
 
 function clickMe() {
@@ -18,36 +19,15 @@ export default function StartMenu() {
 
 
     return (
-        <Router>
-            <div className="startMenuDiv">
+    <>
 
-                <div className="">
-                    <NavLink to="/InputPage" activeClassName="mainButtonStylingIndex">
-                        <button className="mainButtonStyling">New Game</button>
-                    </NavLink>
-
-                    <Switch>
-                        <Route path="/InputPage">
-                            <Inputpage />
-                        </Route>
-                    </Switch>
-                </div>
-
-
-                <div>
-                    <Link to="/OptionsPage">
-                        <button className="mainButtonStyling">Options</button>
-                    </Link>
-                    <Switch>
-                        <Route path="/OptionsPage">
-                            <OptionsPage />
-                        </Route>
-
-                    </Switch>
-                </div>
-
-
-            </div>
-        </Router>
-    )
+        
+        <NavLink to="/InputPage" activeClassName="mainButtonStylingIndex">
+        <button className="mainButtonStyling">New Game</button>
+    </NavLink>
+    <Link to="/OptionsPage">
+        <button className="mainButtonStyling">Options</button>
+    </Link>
+    </>
+)
 }

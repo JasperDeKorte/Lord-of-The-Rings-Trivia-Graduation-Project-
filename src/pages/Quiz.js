@@ -9,7 +9,10 @@ import {
 } from "react-router-dom";
 
 export default function Quiz() {
+
     return (
-        <p>Dit is de quiz pagina</p>
+        <h1>Dit is de quizpagina</h1>
+
+
     )
 }

@@ -1,18 +1,35 @@
+body {
+
+}
+
+#LOTRlogo {
+  width: 200px;
+  height: 200px;
+}
+
+
 
 .startMenuDiv {
   display: flex;
-  width: 500px;
-  height: 1000px;
+  width: 576px;
+  height: 960px;
   border-style: solid;
 
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #ded17c;
 
   
 }
 
+.mainLayoutStyling {
+
+}
+
 .mainButtonStyling {
+  justify-content: center;
+  align-items: center;
   box-shadow:inset 0px 1px 0px 0px #f9eca0;
   background:linear-gradient(to bottom, #f0c911 5%, #f2ab1e 100%);
   background-color:#f0c911;
@@ -38,5 +55,22 @@
 }
 
 .mainInputStyling {
+  padding: 10px;
+  font-size: 30px;
+  border-width: 1px;
+  border-color: #000000;
+  background-color: #ffeb9d;
+  color: #000000;
+  border-style: solid;
+  border-radius: 40px;
+  box-shadow: 0px 4px 5px rgba(66,66,66,.50);
+  text-shadow: 0px 0px 5px rgba(66,66,66,.0);
+  text-align: center;
+}
 
+.generalTextStyling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
 }

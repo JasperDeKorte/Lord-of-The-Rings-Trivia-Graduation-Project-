@@ -3,19 +3,42 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link, NavLink
 } from "react-router-dom";
-import InputPage from "./pages/InputPage";
 import StartMenu from "./pages/StartMenu"
-import Options from "./pages/OptionsPage";
+import Inputpage from "./pages/InputPage";
+import OptionsPage from "./pages/OptionsPage";
+import Quiz from "./pages/Quiz"
+import logo from "./assets/LOTR.jpg";
 
 export default function App() {
 
     return (
-        <>
-      <StartMenu />
 
-        </>
+        <div className="startMenuDiv">
+            <div className="backgroundcss">
+                <h1></h1>
+            </div>
+
+
+
+            <Router>
+                        <Switch>
+                            <Route exact path="/">
+                                <StartMenu />
+                            </Route>
+
+                            <Route path="/InputPage">
+                                <Inputpage/>
+                            </Route>
+
+                            <Route path="/OptionsPage">
+                                <OptionsPage/>
+                            </Route>
+                        </Switch>
+            </Router>
+
+        </div>
     );
 }
 
