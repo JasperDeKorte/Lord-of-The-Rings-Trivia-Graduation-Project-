@@ -23,7 +23,7 @@ export default function StartMenu() {
         <>
 
 
-            <NavLink to="/InputPage" activeClassName="mainButtonStylingIndex">
+            <NavLink to="/InputPage">
                 <button className="mainButtonStyling">New Game</button>
             </NavLink>
 

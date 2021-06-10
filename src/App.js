@@ -12,9 +12,11 @@ import Quiz from "./pages/Quiz"
 import logo from "./assets/LOTR.jpg";
 import Highscore from "./pages/HighscorePage";
 
+
 export default function App() {
 
     return (
+
 
         <div className="startMenuDiv">
             <div className="backgroundcss">
