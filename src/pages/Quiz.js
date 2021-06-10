@@ -22,7 +22,7 @@ export default function Quiz(props) {
             ]
         },
         {
-            questionText: "Wie zn moeder?",
+            questionText: "question #2?",
             answerOptions: [
                 {answerText: "answer #1", isCorrect: false},
                 {answerText: "answer #2", isCorrect: true},
