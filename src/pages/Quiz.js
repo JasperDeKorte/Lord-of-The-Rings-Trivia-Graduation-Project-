@@ -9,13 +9,15 @@ import {
 } from "react-router-dom";
 import InputPage from "./InputPage";
 
-export default function Quiz() {
+export default function Quiz(props) {
 
     return (
         <>
-            <h1>Playername</h1>
-
-
+        <div className="popup">
+            <div className="popup-inner">
+                <h1>{}</h1>
+            </div>
+        </div>
 
 
 

@@ -29,7 +29,7 @@ export default function InputPage(props) {
                 </Route>
 
            <NavLink to="/Quiz" >
-               <button className="mainButtonStyling" onClick={() => console.log("playername is set!:", name)}>Playerset</button>
+               <button className="mainButtonStyling" onClick={() => console.log(name)}>Playerset</button>
            </NavLink>
 
 
