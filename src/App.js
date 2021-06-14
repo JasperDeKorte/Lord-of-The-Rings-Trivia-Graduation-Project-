@@ -8,7 +8,6 @@ import StartMenu from "./pages/StartMenu"
 import Inputpage from "./pages/InputPage";
 import OptionsPage from "./pages/OptionsPage";
 import Quiz from "./pages/Quiz"
-
 import Highscore from "./pages/HighscorePage";
 
 
@@ -16,10 +15,10 @@ export default function App() {
 
     return (
 
-
+<div className="Root">
         <div className="startMenuDiv">
             <div className="backgroundcss">
-                <h1></h1>
+
             </div>
 
 
@@ -51,6 +50,7 @@ export default function App() {
             </Router>
 
         </div>
+</div>
     );
 }
 

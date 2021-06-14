@@ -2,7 +2,6 @@ import React from 'react'
 import App from "../App";
 import axios from "axios";
 import {
-
     NavLink
 } from "react-router-dom";
 
@@ -35,8 +34,18 @@ export default function Quiz(props) {
         fetchData();
     }, []);
 
+    function QuestionsComp(props){
+        return(
+            <h1>Hier volgt de naam van mijzelf: {props.name}.
+                Hier volgt de naam van mijn vriendin: {props.gf}
+            </h1>
+        )
+    }
+
 
     const [score, setScore] = React.useState(0);
+
+    const [showFact, SetShowFact] = React.useState(false)
 
     const questions = [
         {
@@ -100,6 +109,8 @@ export default function Quiz(props) {
 
 
 
+
+
     const handleAnswerButtonClick = (isCorrect) => {
         if (isCorrect === true) {
             setScore(score +10);
@@ -120,33 +131,43 @@ export default function Quiz(props) {
 
     return (
         <>
-
-
-            <div className="app">
-                {showScore ? (
+            <div className="randomFact">
+                {showFact ? (
                     <>
-                    <div className="score-section">you scored {score} out of {questions.length * 10}</div>
-                    <NavLink to="/">
-                        <button className="mainButtonStyling">back</button>
-                    </NavLink>
-                    </>
 
+                    </>
                 ) : (
-                    <>
-                        <div className="question-section">
-                            <div className="question-count">
-                                <span>Question {currentQuestion + 1}</span>/{questions.length}
-                            </div>
-                            <div className="question-text">{questions[currentQuestion].questionText}</div>
-                        </div>
-                        <div className="answer-section">
-                            {questions[currentQuestion].answerOptions.map((answerOption) =>
-                                <button className="quizButtonStyling"
-                                    onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
-                        </div>
-                    </>
+                    <div className="app">
+                        {showScore ? (
+                            <>
+                                <div className="score-section">you scored {score} out of {questions.length * 10}</div>
+                                <NavLink to="/">
+                                    <button className="mainButtonStyling">back</button>
+                                </NavLink>
+                            </>
+
+                        ) : (
+                            <>
+                                <div className="question-section">
+                                    <div className="question-count">
+                                        <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                    </div>
+                                    <div className="question-text">{questions[currentQuestion].questionText}</div>
+                                </div>
+                                <div className="answer-section">
+                                    {questions[currentQuestion].answerOptions.map((answerOption) =>
+                                        <button className="quizButtonStyling"
+                                                onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
+                                </div>
+                            </>
+                        )}
+                    </div>
                 )}
             </div>
+
+
+
+
         </>
 
     )
