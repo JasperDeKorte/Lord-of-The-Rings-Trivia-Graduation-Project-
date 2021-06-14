@@ -47,6 +47,17 @@ body {
 
 }
 
+#scoreStyling {
+display: inline;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+#livesStyling {
+display: inline;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
 .mainButtonStyling {
   justify-content: center;
   align-items: center;

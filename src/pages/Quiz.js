@@ -36,24 +36,24 @@ export default function Quiz(props) {
 
     function QuestionsComp(props){
         return(
-            <h1>Hier volgt de naam van mijzelf: {props.name}.
-                Hier volgt de naam van mijn vriendin: {props.gf}
-            </h1>
+            <div>
+                <h2>{props.showQuestion}</h2>
+            </div>
         )
     }
 
 
     const [score, setScore] = React.useState(0);
 
-    const [showFact, SetShowFact] = React.useState(false)
+    const [showFact, setShowFact] = React.useState(true)
 
     const questions = [
         {
 
             questionText: <div>
-                <blockquote>{quote}</blockquote>
-                <cite>- {character}</cite>
-                <p>{score}</p>
+                <QuestionsComp showQuestion="Vraag 1"
+                />
+                <button onClick={() => setShowFact(false)}>ShowFact</button>
             </div>,
             answerOptions: [
                 {answerText: "answer #1", isCorrect: true},
@@ -65,9 +65,7 @@ export default function Quiz(props) {
         },
         {
             questionText: <div>
-                <blockquote>{quote}</blockquote>
-                <cite>- {character}</cite>
-                <p>{score}</p>
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, sunt.</h2>
             </div>,
             answerOptions: [
                 {answerText: "answer #1", isCorrect: false},
@@ -80,7 +78,6 @@ export default function Quiz(props) {
             questionText: <div>
                 <blockquote>{quote}</blockquote>
                 <cite>- {character}</cite>
-                <p>{score}</p>
             </div>,
             answerOptions: [
                 {answerText: "Answer 1", isCorrect: false},
@@ -93,7 +90,6 @@ export default function Quiz(props) {
             questionText: <div>
                 <blockquote>{quote}</blockquote>
                 <cite>- {character}</cite>
-                <p>{score}</p>
             </div>,
             answerOptions: [
                 {answerText: "Answer 1", isCorrect: false},
@@ -134,7 +130,8 @@ export default function Quiz(props) {
             <div className="randomFact">
                 {showFact ? (
                     <>
-
+                        <QuestionsComp />
+                        <button onClick={() => setShowFact(false)}>ShowQuestion</button>
                     </>
                 ) : (
                     <div className="app">
@@ -149,6 +146,10 @@ export default function Quiz(props) {
                         ) : (
                             <>
                                 <div className="question-section">
+                                    <div className="scoreAndLives">
+                                        <h1 id="livesStyling">Lives: ... </h1>
+                                        <h1 id="scoreStyling">{score}</h1>
+                                    </div>
                                     <div className="question-count">
                                         <span>Question {currentQuestion + 1}</span>/{questions.length}
                                     </div>
