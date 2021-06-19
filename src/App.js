@@ -15,43 +15,42 @@ export default function App() {
 
     return (
 
-<div className="Root">
-        <div className="startMenuDiv">
+        <div className="Root">
+            <div className="startMenuDiv">
 
-            <div className="backgroundcss">
+                <div className="backgroundcss">
+
+                </div>
+
+
+                <Router>
+                    <Switch>
+                        <Route exact path="/">
+                            <StartMenu/>
+                        </Route>
+
+                        <Route path="/Quiz">
+                            <Quiz/>
+                        </Route>
+
+                        <Route path="/Highscore">
+                            <Highscore/>
+                        </Route>
+
+                        <Route path="/InputPage">
+                            <Inputpage/>
+                        </Route>
+
+                        <Route path="/OptionsPage">
+                            <OptionsPage/>
+                        </Route>
+
+
+                    </Switch>
+                </Router>
 
             </div>
-
-
-
-            <Router>
-                        <Switch>
-                            <Route exact path="/">
-                                <StartMenu />
-                            </Route>
-
-                            <Route path="/Quiz">
-                                <Quiz />
-                            </Route>
-
-                            <Route path="/Highscore">
-                                <Highscore />
-                            </Route>
-
-                            <Route path="/InputPage">
-                                <Inputpage/>
-                            </Route>
-
-                            <Route path="/OptionsPage">
-                                <OptionsPage/>
-                            </Route>
-
-
-                        </Switch>
-            </Router>
-
         </div>
-</div>
     );
 }
 
