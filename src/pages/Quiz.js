@@ -5,6 +5,7 @@ import {
     NavLink
 } from "react-router-dom";
 
+
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
 export default function Quiz(props) {
@@ -51,36 +52,22 @@ export default function Quiz(props) {
     }
 
 
-    const [score, setScore] = React.useState(0);
 
+    const [score, setScore] = React.useState(0);
     const [showFact, setShowFact] = React.useState(true)
 
-
-
-
-
-
     const facts = [
-        {
-            factText: <div>
-                <p>fact #1</p>
-                <button onClick={() => setShowFact(false)}>ShowQuestion</button>
-            </div>
-        },{
-        factText: <div>
-            <p>Fact #2</p>
-            <button onClick={() => setShowFact(false)}>ShowQuestion</button>
-        </div>
-        }
+        {fact: "in the lord of the rings golem has a few moments where it looks like something is stuck in his throat"},
+        {fact: "Fact2"},
+        {fact: "Fact3"},
+        {fact: "Fact4"},
     ]
 
     const questions = [
         {
-
-            questionText: <div>
-                <QuestionsComp showQuestion="In LOTR, what does golem say when he is having one of his seizures?"
-                />
-                <FactComp fact="In LOTR gollem always says his famous words Gollem whenever he is having a stroke" />
+            questionText:
+                <div>
+                <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
                 <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
@@ -162,12 +149,9 @@ export default function Quiz(props) {
     return (
         <>
             <div className="randomFact">
-                {showFact ? (
-                    <>
-                        <FactComp
-                            fact="In LOTR, what does golem say when he is having one of his seizures?"
-                        />
-                        <button onClick={() => setShowFact(false)}>ShowQuestion</button>
+                {showFact ? ( <>
+                    <div className="question-text">{facts[currentQuestion].fact}</div>
+                    <button onClick={() => setShowFact(false)}>showQuestion</button>
                     </>
                 ) : (
                     <div className="app">
@@ -181,6 +165,9 @@ export default function Quiz(props) {
 
                         ) : (
                             <>
+                                <div className="facts-section">
+
+                                </div>
                                 <div className="question-section">
                                     <div className="scoreAndLives">
                                         <h1 id="livesStyling">Lives: ... </h1>

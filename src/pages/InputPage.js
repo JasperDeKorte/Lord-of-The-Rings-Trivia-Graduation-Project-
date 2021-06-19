@@ -4,11 +4,20 @@ import {
     Link,
     NavLink,
 } from "react-router-dom";
+import {Howl} from "howler";
+import swordDraw from "../audioclips/swordDraw.mp3";
 
 
 
 export default function InputPage(props) {
     const [name, setName] = React.useState("")
+
+    const sound2 =  new Howl({
+        src: [swordDraw],
+        autoplay: false,
+        volume: 0.2,
+
+    })
 
     return (
         <div className="mainLayoutStyling">
@@ -19,7 +28,9 @@ export default function InputPage(props) {
 
             <div>
                 <Link to="/">
-                    <button id="backInputPage" className="mainButtonStyling">Back</button>
+                    <button id="backInputPage" className="mainButtonStyling" onClick={() => {
+                        sound2.play()
+                    }}>Back</button>
                 </Link>
 
                 <Route exact path="/Quiz" component={name}>
@@ -27,7 +38,9 @@ export default function InputPage(props) {
                 </Route>
 
            <NavLink to="/Quiz" >
-               <button className="mainButtonStyling" onClick={() => console.log(name)}>Playerset</button>
+               <button className="mainButtonStyling" onClick={() => {
+                   sound2.play()
+               }}>Playerset</button>
            </NavLink>
 
 

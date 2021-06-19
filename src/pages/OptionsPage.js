@@ -4,6 +4,7 @@ import {
 
     Link
 } from "react-router-dom";
+import swordDraw from "../audioclips/swordDraw.mp3";
 
 // 'http://goldfirestudios.com/proj/howlerjs/sound.ogg'
 
@@ -13,8 +14,8 @@ const audioClips = [
 
 
 export default function OptionsPage() {
-    const sound =  new Howl({
-        src: ['http://goldfirestudios.com/proj/howlerjs/sound.mp3'],
+    const sound2 =  new Howl({
+        src: [swordDraw],
         autoplay: false,
         volume: 0.2,
 
@@ -25,16 +26,15 @@ export default function OptionsPage() {
             <div>
                 <p>Hier komen de opties!</p>
                 <h2>Sounds</h2>
-                <button onClick={(event) => {
-                    sound.play()
-                }}>Play</button>
 
                 <button className="quizButtonStyling">Turn sound off</button>
             </div>
 
             <div>
                 <Link to="/">
-                    <button className="mainButtonStyling">Back</button>
+                    <button className="mainButtonStyling" onClick={() => {
+                        sound2.play()
+                    }}>Back</button>
                 </Link>
 
             </div>
