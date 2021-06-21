@@ -8,13 +8,13 @@ import swordDraw from "../audioclips/swordDraw.mp3";
 
 // 'http://goldfirestudios.com/proj/howlerjs/sound.ogg'
 
-const audioClips = [
+const music = [
     {sound: 'http://goldfirestudios.com/proj/howlerjs/sound.mp3', label: "music"}
 ]
 
 
 export default function OptionsPage() {
-    const [volume, setVolume] = React.useState(0.2)
+    const [isHovering, setIsHovering] = React.useState(false)
 
     const sound2 =  new Howl({
         src: [swordDraw],
@@ -25,12 +25,26 @@ export default function OptionsPage() {
 
     return (
         <>
+                <button onMouseEnter={() => {
+                    setIsHovering(true);
+                    sound2.play();
+                }}
+                        onMouseLeave={() => {
+                            setIsHovering(false);
+                            sound2.stop();
+                        }}
+                >
+                    <button isHovering={isHovering}>
+                        Hover over me!</button>
+                    </button>
             <div>
                 <p>Hier komen de opties!</p>
-                <h2>Sounds</h2>
 
                 <button className="quizButtonStyling">Turn sound off</button>
-                <input className="mainButtonStyling" type="checkbox" onChange={() => sound2.volume(0)} />
+                <input className="mainButtonStyling" type="checkbox" onChange={(event) => sound2.volume(0)} />
+                <button className="mainButtonStyling" onClick={() => {
+                    sound2.play()
+                }}>test</button>
             </div>
 
             <div>

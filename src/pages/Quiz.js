@@ -128,6 +128,8 @@ export default function Quiz(props) {
 
 
 
+
+
     const handleAnswerButtonClick = (isCorrect) => {
         if (isCorrect === true) {
             setScore(score + 10);
@@ -139,10 +141,15 @@ export default function Quiz(props) {
         } else {
             setShowScore(true);
         }
-        setCurrentQuestion(nextQuestion)
+        setCurrentQuestion(nextQuestion);
+
+        if (nextQuestion < facts.length) {
+            setShowFact(true)
+        } else {
+            setShowFact(false)
+        }
+
     }
-
-
 
 
 
