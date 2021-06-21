@@ -57,7 +57,7 @@ export default function Quiz(props) {
     const [showFact, setShowFact] = React.useState(true)
 
     const facts = [
-        {fact: "in the lord of the rings golem has a few moments where it looks like something is stuck in his throat"},
+        {fact: "Fact1"},
         {fact: "Fact2"},
         {fact: "Fact3"},
         {fact: "Fact4"},

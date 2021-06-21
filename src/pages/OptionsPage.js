@@ -14,6 +14,8 @@ const audioClips = [
 
 
 export default function OptionsPage() {
+    const [volume, setVolume] = React.useState(0.2)
+
     const sound2 =  new Howl({
         src: [swordDraw],
         autoplay: false,
@@ -28,6 +30,7 @@ export default function OptionsPage() {
                 <h2>Sounds</h2>
 
                 <button className="quizButtonStyling">Turn sound off</button>
+                <input className="mainButtonStyling" type="checkbox" onChange={() => sound2.volume(0)} />
             </div>
 
             <div>
