@@ -3,7 +3,10 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    useLocation,
 } from "react-router-dom";
+import {AnimatePresence} from 'framer-motion'
+
 import StartMenu from "./pages/StartMenu"
 import Inputpage from "./pages/InputPage";
 import OptionsPage from "./pages/OptionsPage";
@@ -12,6 +15,7 @@ import Highscore from "./pages/HighscorePage";
 
 
 export default function App() {
+
 
     return (
 
@@ -24,29 +28,31 @@ export default function App() {
 
 
                 <Router>
-                    <Switch>
-                        <Route exact path="/">
-                            <StartMenu/>
-                        </Route>
+                    <AnimatePresence exitBeforeEnter>
+                        <Switch>
+                            <Route exact path="/">
+                                <StartMenu/>
+                            </Route>
 
-                        <Route path="/Quiz">
-                            <Quiz/>
-                        </Route>
+                            <Route path="/Quiz">
+                                <Quiz/>
+                            </Route>
 
-                        <Route path="/Highscore">
-                            <Highscore/>
-                        </Route>
+                            <Route path="/Highscore">
+                                <Highscore/>
+                            </Route>
 
-                        <Route path="/InputPage">
-                            <Inputpage/>
-                        </Route>
+                            <Route path="/InputPage">
+                                <Inputpage/>
+                            </Route>
 
-                        <Route path="/OptionsPage">
-                            <OptionsPage/>
-                        </Route>
+                            <Route path="/OptionsPage">
+                                <OptionsPage/>
+                            </Route>
 
 
-                    </Switch>
+                        </Switch>
+                    </AnimatePresence>
                 </Router>
 
             </div>

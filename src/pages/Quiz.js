@@ -4,6 +4,7 @@ import axios from "axios";
 import {
     NavLink
 } from "react-router-dom";
+import {AnimatePresence, motion} from 'framer-motion'
 
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
@@ -52,7 +53,6 @@ export default function Quiz(props) {
     }
 
 
-
     const [score, setScore] = React.useState(0);
     const [showFact, setShowFact] = React.useState(true)
 
@@ -67,9 +67,15 @@ export default function Quiz(props) {
         {
             questionText:
                 <div>
-                <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
-                <button onClick={() => setShowFact(true)}>ShowFact</button>
-            </div>,
+                    <motion.div
+                        initial={{scaleY: 0}}
+                        animate={{scaleY: 1}}
+                        exit={{scaleY: 0}}
+                    >
+                        <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
+                        <button onClick={() => setShowFact(true)}>ShowFact</button>
+                    </motion.div>
+                </div>,
             answerOptions: [
                 {answerText: "FCKING HELP", isCorrect: true},
                 {answerText: "IM DYING", isCorrect: false},
@@ -119,15 +125,9 @@ export default function Quiz(props) {
     ]
 
 
-
-
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
 
     const [showScore, setShowScore] = React.useState(false);
-
-
-
-
 
 
     const handleAnswerButtonClick = (isCorrect) => {
@@ -152,51 +152,56 @@ export default function Quiz(props) {
     }
 
 
-
     return (
         <>
-            <div className="randomFact">
-                {showFact ? ( <>
-                    <div className="question-text">{facts[currentQuestion].fact}</div>
-                    <button onClick={() => setShowFact(false)}>showQuestion</button>
-                    </>
-                ) : (
-                    <div className="app">
-                        {showScore ? (
-                            <>
-                                <div className="score-section">you scored {score} out of {questions.length * 10}</div>
-                                <NavLink to="/">
-                                    <button className="mainButtonStyling">back</button>
-                                </NavLink>
-                            </>
+            <motion.div
+                initial={{scaleY: 0}}
+                animate={{scaleY: 1}}
+                exit={{scaleY: 0}}
+            >
+                <div className="randomFact">
+                    {showFact ? (<>
+                            <div className="question-text">{facts[currentQuestion].fact}</div>
+                            <button onClick={() => setShowFact(false)}>showQuestion</button>
+                        </>
+                    ) : (
+                        <div className="app">
+                            {showScore ? (
+                                <>
+                                    <div className="score-section">you scored {score} out
+                                        of {questions.length * 10}</div>
+                                    <NavLink to="/">
+                                        <button className="mainButtonStyling">back</button>
+                                    </NavLink>
+                                </>
 
-                        ) : (
-                            <>
-                                <div className="facts-section">
+                            ) : (
+                                <>
+                                    <div className="facts-section">
 
-                                </div>
-                                <div className="question-section">
-                                    <div className="scoreAndLives">
-                                        <h1 id="livesStyling">Lives: ... </h1>
-                                        <h1 id="scoreStyling">{score}</h1>
                                     </div>
-                                    <div className="question-count">
-                                        <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                    <div className="question-section">
+                                        <div className="scoreAndLives">
+                                            <h1 id="livesStyling">Lives: ... </h1>
+                                            <h1 id="scoreStyling">{score}</h1>
+                                        </div>
+                                        <div className="question-count">
+                                            <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                        </div>
+                                        <div className="question-text">{questions[currentQuestion].questionText}</div>
                                     </div>
-                                    <div className="question-text">{questions[currentQuestion].questionText}</div>
-                                </div>
-                                <div className="answer-section">
-                                    {questions[currentQuestion].answerOptions.map((answerOption) =>
-                                        <button className="quizButtonStyling"
-                                                onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
-                                </div>
-                            </>
-                        )}
-                    </div>
-                )}
-            </div>
+                                    <div className="answer-section">
+                                        {questions[currentQuestion].answerOptions.map((answerOption) =>
+                                            <button className="quizButtonStyling"
+                                                    onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
 
-
+            </motion.div>
         </>
 
     )
