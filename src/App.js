@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext, createContext} from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,8 +14,13 @@ import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
 
 
-export default function App() {
 
+
+export const nameAvatarContext = createContext()
+
+export default function App() {
+    const [name, setName] = React.useState("")
+    const [avatar, setAvatar] = React.useState("")
 
     return (
 
@@ -26,35 +31,35 @@ export default function App() {
 
                 </div>
 
+                <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
+                    <Router>
+                        <AnimatePresence exitBeforeEnter>
+                            <Switch>
+                                <Route exact path="/">
+                                    <StartMenu/>
+                                </Route>
 
-                <Router>
-                    <AnimatePresence exitBeforeEnter>
-                        <Switch>
-                            <Route exact path="/">
-                                <StartMenu/>
-                            </Route>
+                                <Route path="/Quiz">
+                                    <Quiz/>
+                                </Route>
 
-                            <Route path="/Quiz">
-                                <Quiz/>
-                            </Route>
+                                <Route path="/Highscore">
+                                    <Highscore/>
+                                </Route>
 
-                            <Route path="/Highscore">
-                                <Highscore/>
-                            </Route>
+                                <Route path="/InputPage">
+                                    <Inputpage/>
+                                </Route>
 
-                            <Route path="/InputPage">
-                                <Inputpage/>
-                            </Route>
-
-                            <Route path="/OptionsPage">
-                                <OptionsPage/>
-                            </Route>
+                                <Route path="/OptionsPage">
+                                    <OptionsPage/>
+                                </Route>
 
 
-                        </Switch>
-                    </AnimatePresence>
-                </Router>
-
+                            </Switch>
+                        </AnimatePresence>
+                    </Router>
+                </nameAvatarContext.Provider>
             </div>
         </div>
     );

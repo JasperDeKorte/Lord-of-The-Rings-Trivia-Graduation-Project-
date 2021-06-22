@@ -5,6 +5,7 @@ import {
     NavLink
 } from "react-router-dom";
 import {AnimatePresence, motion} from 'framer-motion'
+import { nameAvatarContext } from '../App'
 
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
@@ -57,7 +58,7 @@ export default function Quiz(props) {
     const [showFact, setShowFact] = React.useState(true)
 
     const facts = [
-        {fact: "Fact1"},
+        {fact: <div>{nameAvatarContext.name}</div>},
         {fact: "Fact2"},
         {fact: "Fact3"},
         {fact: "Fact4"},
@@ -182,11 +183,12 @@ export default function Quiz(props) {
                                     </div>
                                     <div className="question-section">
                                         <div className="scoreAndLives">
-                                            <h1 id="livesStyling">Lives: ... </h1>
-                                            <h1 id="scoreStyling">{score}</h1>
+                                            <h1>{nameAvatarContext.name}</h1>
+                                            <p><h1 id="livesStyling">Lives: N.A. </h1></p>
+                                            <p><h1 id="scoreStyling">Score: {score}</h1></p>
                                         </div>
                                         <div className="question-count">
-                                            <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                            <span style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
                                         </div>
                                         <div className="question-text">{questions[currentQuestion].questionText}</div>
                                     </div>

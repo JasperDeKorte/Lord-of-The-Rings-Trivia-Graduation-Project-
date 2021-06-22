@@ -7,6 +7,7 @@ import {
 import swordDraw from "../audioclips/swordDraw.mp3";
 import { motion } from "framer-motion"
 
+// GELUID GLOBAL MAKEN
 // 'http://goldfirestudios.com/proj/howlerjs/sound.ogg'
 
 const music = [
