@@ -23,6 +23,8 @@ export default function InputPage(props) {
 
     })
 
+
+
     return (
         <motion.div
             initial={{scaleY: 0}}
@@ -32,7 +34,7 @@ export default function InputPage(props) {
             <div className="mainLayoutStyling">
                 <label className="generalTextStyling">Voer hier speler naam in</label>
                 <div>
-                    <input className="mainInputStyling" value={nameAvatarValue.name} onChange={(event) => nameAvatarValue.setName(event.target.value)}/>
+                    <input className="mainInputStyling" value={nameAvatarValue.name} onChange={(event) => nameAvatarValue.setName(event.target.value)} />
                     <motion
                         initial={{scaleY: 0}}
                         animate={{scaleY: 1}}
@@ -55,10 +57,6 @@ export default function InputPage(props) {
                         }}>Back
                         </button>
                     </Link>
-
-                    <Route exact path="/Quiz" component={nameAvatarValue.name}>
-
-                    </Route>
 
                     <NavLink to="/Quiz">
                         <button className="mainButtonStyling" onClick={() => {

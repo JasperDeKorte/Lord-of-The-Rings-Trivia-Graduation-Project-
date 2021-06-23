@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     Link,
     NavLink,
@@ -7,6 +7,7 @@ import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3"
 import swordDraw from "../audioclips/swordDraw.mp3"
 import {AnimatePresence, motion} from 'framer-motion'
+import { nameAvatarContext } from "../App";
 
 export default function StartMenu() {
     const sound1 = new Howl({
@@ -22,6 +23,8 @@ export default function StartMenu() {
         volume: 0.2,
 
     })
+
+    const nameAvatarValue = useContext(nameAvatarContext)
 
     return (
         <>

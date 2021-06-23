@@ -14,8 +14,6 @@ import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
 
 
-
-
 export const nameAvatarContext = createContext()
 
 export default function App() {
@@ -31,8 +29,9 @@ export default function App() {
 
                 </div>
 
-                <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
-                    <Router>
+
+                <Router>
+                    <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
                         <AnimatePresence exitBeforeEnter>
                             <Switch>
                                 <Route exact path="/">
@@ -54,14 +53,14 @@ export default function App() {
                                 <Route path="/OptionsPage">
                                     <OptionsPage/>
                                 </Route>
-
-
                             </Switch>
                         </AnimatePresence>
-                    </Router>
-                </nameAvatarContext.Provider>
+                    </nameAvatarContext.Provider>
+                </Router>
+
             </div>
         </div>
-    );
+    )
+        ;
 }
 

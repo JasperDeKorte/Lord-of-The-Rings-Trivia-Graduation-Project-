@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useContext, createContext} from 'react'
 import App from "../App";
 import axios from "axios";
 import {
     NavLink
 } from "react-router-dom";
 import {AnimatePresence, motion} from 'framer-motion'
-import { nameAvatarContext } from '../App'
+import {nameAvatarContext} from '../App'
 
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
@@ -37,28 +37,18 @@ export default function Quiz(props) {
         fetchData();
     }, []);
 
-    function QuestionsComp(props) {
-        return (
-            <div>
-                <h2>{props.showQuestion}</h2>
-            </div>
-        )
-    }
-
-    function FactComp(props) {
-        return (
-            <div>
-                <h3>{props.fact}</h3>
-            </div>
-        )
-    }
-
 
     const [score, setScore] = React.useState(0);
     const [showFact, setShowFact] = React.useState(true)
+    const nameAvatarValue = useContext(nameAvatarContext)
+
 
     const facts = [
-        {fact: <div>{nameAvatarContext.name}</div>},
+        {
+            fact: <div>
+                {nameAvatarValue.name} {nameAvatarValue.avatar}
+            </div>
+        },
         {fact: "Fact2"},
         {fact: "Fact3"},
         {fact: "Fact4"},
@@ -87,7 +77,7 @@ export default function Quiz(props) {
         },
         {
             questionText: <div>
-                <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, sunt.</h2>
+                <h2>Thi sis question #2</h2>
                 <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
@@ -99,8 +89,7 @@ export default function Quiz(props) {
         },
         {
             questionText: <div>
-                <blockquote>{quote}</blockquote>
-                <cite>- {character}</cite>
+                <h2>This is question #3</h2>
                 <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
@@ -152,6 +141,12 @@ export default function Quiz(props) {
 
     }
 
+     const ezWin = () => {
+        if (nameAvatarValue.name === "Novi") {
+            setShowScore(true)
+        }
+    }
+
 
     return (
         <>
@@ -169,8 +164,9 @@ export default function Quiz(props) {
                         <div className="app">
                             {showScore ? (
                                 <>
-                                    <div className="score-section">you scored {score} out
-                                        of {questions.length * 10}</div>
+                                    <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
+                                    <p id='scoreEnding' className="score-section">You scored {score} out
+                                        of {questions.length * 10} points!</p>
                                     <NavLink to="/">
                                         <button className="mainButtonStyling">back</button>
                                     </NavLink>
@@ -183,12 +179,13 @@ export default function Quiz(props) {
                                     </div>
                                     <div className="question-section">
                                         <div className="scoreAndLives">
-                                            <h1>{nameAvatarContext.name}</h1>
+                                            <h1 id="playerNameStyling">{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
                                             <p><h1 id="livesStyling">Lives: N.A. </h1></p>
                                             <p><h1 id="scoreStyling">Score: {score}</h1></p>
                                         </div>
                                         <div className="question-count">
-                                            <span style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
+                                            <span
+                                                style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
                                         </div>
                                         <div className="question-text">{questions[currentQuestion].questionText}</div>
                                     </div>
