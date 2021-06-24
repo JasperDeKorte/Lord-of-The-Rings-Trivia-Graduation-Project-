@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import {
     Link,
     NavLink,
@@ -7,9 +7,11 @@ import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3"
 import swordDraw from "../audioclips/swordDraw.mp3"
 import {AnimatePresence, motion} from 'framer-motion'
-import { nameAvatarContext } from "../App";
+import {nameAvatarContext} from "../App";
+import {soundContext} from "../App";
 
 export default function StartMenu() {
+
     const sound1 = new Howl({
         src: [swordSFX],
         autoplay: false,
@@ -25,35 +27,50 @@ export default function StartMenu() {
     })
 
     const nameAvatarValue = useContext(nameAvatarContext)
+    const soundToggleMute = useContext(soundContext)
 
     return (
         <>
             <motion.div
-                initial={{scaleY: 0}}
-                animate={{scaleY: 1}}
-                exit={{scaleY: 0}}
+                initial={{scaleX: 0, scaleY: 0}}
+                animate={{scaleX: 1, scaleY: 1}}
+                exit={{scaleX: 0, scaleY: 0}}
 
             >
-                <NavLink to="/InputPage">
-                    <button className="mainButtonStyling" onClick={() => {
-                        sound1.play()
-                    }}>New Game
-                    </button>
-                </NavLink>
+                <div className="StartMenuButtons">
+                    <NavLink to="/InputPage">
+                        <motion.div whileHover={{scale: 1.1}}>
+                            <button className="mainButtonStyling" onClick={() => {
+                                {
+                                    soundToggleMute.sound && sound1.play()
+                                }
+                            }}>New Game
+                            </button>
+                        </motion.div>
+                    </NavLink>
 
-                <Link to="/OptionsPage">
-                    <button className="mainButtonStyling" onClick={() => {
-                        sound1.play()
-                    }}>Options
-                    </button>
-                </Link>
+                    <Link to="/OptionsPage">
+                        <motion.div whileHover={{scale: 1.1}}>
+                            <button className="mainButtonStyling" onClick={() => {
+                                {
+                                    soundToggleMute.sound && sound1.play()
+                                }
+                            }}>Options
+                            </button>
+                        </motion.div>
+                    </Link>
 
-                <Link to="/Highscore">
-                    <button className="mainButtonStyling" onClick={() => {
-                        sound1.play()
-                    }}>Highscore
-                    </button>
-                </Link>
+                    <Link to="/Highscore">
+                        <motion.div whileHover={{scale: 1.1}}>
+                            <button className="mainButtonStyling" onClick={() => {
+                                {
+                                    soundToggleMute.sound && sound1.play()
+                                }
+                            }}>Highscore
+                            </button>
+                        </motion.div>
+                    </Link>
+                </div>
             </motion.div>
         </>
     )

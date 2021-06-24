@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import {AnimatePresence, motion} from 'framer-motion'
 import {nameAvatarContext} from '../App'
+import {soundContext} from "../App";
 
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
@@ -39,8 +40,9 @@ export default function Quiz(props) {
 
 
     const [score, setScore] = React.useState(0);
-    const [showFact, setShowFact] = React.useState(true)
-    const nameAvatarValue = useContext(nameAvatarContext)
+    const [showFact, setShowFact] = React.useState(true);
+    const nameAvatarValue = useContext(nameAvatarContext);
+    const soundToggleMute = useContext(soundContext)
 
 
     const facts = [

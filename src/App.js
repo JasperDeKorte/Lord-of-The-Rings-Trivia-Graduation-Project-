@@ -15,10 +15,12 @@ import Highscore from "./pages/HighscorePage";
 
 
 export const nameAvatarContext = createContext()
+export const soundContext = createContext()
 
 export default function App() {
     const [name, setName] = React.useState("")
     const [avatar, setAvatar] = React.useState("")
+    const [sound, setSound] = React.useState(true)
 
     return (
 
@@ -31,31 +33,33 @@ export default function App() {
 
 
                 <Router>
-                    <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
-                        <AnimatePresence exitBeforeEnter>
-                            <Switch>
-                                <Route exact path="/">
-                                    <StartMenu/>
-                                </Route>
+                    <soundContext.Provider value={{sound, setSound}}>
+                        <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
+                            <AnimatePresence exitBeforeEnter>
+                                <Switch>
+                                    <Route exact path="/">
+                                        <StartMenu/>
+                                    </Route>
 
-                                <Route path="/Quiz">
-                                    <Quiz/>
-                                </Route>
+                                    <Route path="/Quiz">
+                                        <Quiz/>
+                                    </Route>
 
-                                <Route path="/Highscore">
-                                    <Highscore/>
-                                </Route>
+                                    <Route path="/Highscore">
+                                        <Highscore/>
+                                    </Route>
 
-                                <Route path="/InputPage">
-                                    <Inputpage/>
-                                </Route>
+                                    <Route path="/InputPage">
+                                        <Inputpage/>
+                                    </Route>
 
-                                <Route path="/OptionsPage">
-                                    <OptionsPage/>
-                                </Route>
-                            </Switch>
-                        </AnimatePresence>
-                    </nameAvatarContext.Provider>
+                                    <Route path="/OptionsPage">
+                                        <OptionsPage/>
+                                    </Route>
+                                </Switch>
+                            </AnimatePresence>
+                        </nameAvatarContext.Provider>
+                    </soundContext.Provider>
                 </Router>
 
             </div>

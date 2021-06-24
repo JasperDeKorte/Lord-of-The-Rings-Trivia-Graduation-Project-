@@ -29,7 +29,9 @@ export default function Highscore() {
                 <div>
                     <Link to="/">
                         <button className="mainButtonStyling" onClick={() => {
-                            sound2.play()
+                            {
+                                soundToggleMute.sound && sound2.play()
+                            }
                         }}>Back
                         </button>
                     </Link>
