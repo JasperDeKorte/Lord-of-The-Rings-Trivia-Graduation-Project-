@@ -7,7 +7,7 @@ import {
 import {AnimatePresence, motion} from 'framer-motion'
 import {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
-
+import {get} from "react-hook-form";
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
@@ -16,27 +16,41 @@ export default function Quiz(props) {
     const [character, setCharacter] = React.useState();
     const [counstScore, setCountScore] = React.useState();
 
-    React.useEffect(() => {
-        const headers = {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        }
-        const fetchData = async () => {
-            const rawQuotes = await fetch('https://the-one-api.dev/v2/quote', {
-                headers: headers
-            })
-            const quotes = await rawQuotes.json();
-            const quote = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
-            setQuote(quote.dialog)
-            const rawCharacters = await fetch('https://the-one-api.dev/v2/character?_id=' + quote.character, {headers: headers})
-            const characters = await rawCharacters.json();
-            const character = characters.docs[0];
-            setCharacter(character.name)
-            console.log(rawQuotes, rawCharacters)
-        };
+    const axios = require("axios")
 
-        fetchData();
-    }, []);
+    React.useEffect(() => {
+        async function fetchData1() {
+           const response = await axios.get("https://the-one-api.dev/v2/")
+            console.log("dit is de response: ", response)
+            try {
+                console.log("dit is de response: ", response)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        fetchData1()
+    }, [])
+
+    // React.useEffect(() => {
+    //     const headers = {
+    //         'Accept': 'application/json',
+    //         'Authorization': `Bearer ${apiKey}`
+    //     }
+    //     const fetchData = async () => {
+    //         const rawQuotes = await fetch('https://the-one-api.dev/v2/quote', {
+    //             headers: headers
+    //         })
+    //         const quotes = await rawQuotes.json();
+    //         const quote = quotes.docs[Math.floor(Math.random() * quotes.docs.length)];
+    //         setQuote(quote.dialog)
+    //         const rawCharacters = await fetch('https://the-one-api.dev/v2/character?_id=' + quote.character, {headers: headers})
+    //         const characters = await rawCharacters.json();
+    //         const character = characters.docs[0];
+    //         setCharacter(character.name)
+    //     };
+    //     console.log("Dit is FetchData: ", fetchData())
+    //     fetchData();
+    // }, []);
 
 
     const [score, setScore] = React.useState(0);
@@ -48,6 +62,7 @@ export default function Quiz(props) {
     const facts = [
         {
             fact: <div>
+                Fact #1
                 {nameAvatarValue.name} {nameAvatarValue.avatar}
             </div>
         },

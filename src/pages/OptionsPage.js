@@ -29,6 +29,7 @@ export default function OptionsPage() {
         soundToggleMute.setSound(false);
         console.log("Sound is set Off");
     }
+
     function soundToggleOn() {
         soundToggleMute.setSound(true);
         console.log("Sound is set on")
@@ -68,18 +69,19 @@ export default function OptionsPage() {
                     }}>test
                     </button>
                 </div>
-
-                <div>
-                    <Link to="/">
-                        <button className="mainButtonStyling" onClick={() => {
-                            {
-                                soundToggleMute.sound && sound2.play()
-                            }
-                        }}>Back
-                        </button>
-                    </Link>
-                </div>
             </motion.div>
+
+            <div>
+                <Link to="/">
+                    <button className="mainButtonStyling" onClick={() => {
+                        {
+                            soundToggleMute.sound && sound2.play()
+                        }
+                    }}>Back
+                    </button>
+                </Link>
+            </div>
+
         </>
     )
 }

@@ -5,12 +5,13 @@ import {
 import {Howl} from "howler";
 import swordDraw from "../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion";
-import { nameAvatarContext } from "../App";
+import {nameAvatarContext, soundContext} from "../App";
 import { score } from './Quiz'
 
 
 export default function Highscore() {
-    const nameAvatarValue = useContext(nameAvatarContext)
+    const nameAvatarValue = useContext(nameAvatarContext);
+    const soundToggleMute = useContext(soundContext);
 
     const sound2 = new Howl({
         src: [swordDraw],
