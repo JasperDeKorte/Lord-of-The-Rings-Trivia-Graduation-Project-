@@ -1,9 +1,8 @@
-import React, {useContext, createContext} from "react";
+import React, {createContext} from "react";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    useLocation,
 } from "react-router-dom";
 import {AnimatePresence} from 'framer-motion'
 
@@ -26,12 +25,6 @@ export default function App() {
 
         <div className="Root">
             <div className="startMenuDiv">
-
-                <div className="backgroundcss">
-
-                </div>
-
-
                 <Router>
                     <soundContext.Provider value={{sound, setSound}}>
                         <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
@@ -61,7 +54,6 @@ export default function App() {
                         </nameAvatarContext.Provider>
                     </soundContext.Provider>
                 </Router>
-
             </div>
         </div>
     )

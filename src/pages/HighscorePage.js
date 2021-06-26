@@ -1,4 +1,4 @@
-import React, { useContext, createContext} from 'react'
+import React, { useContext } from 'react'
 import {
     Link,
 } from "react-router-dom";
@@ -6,7 +6,7 @@ import {Howl} from "howler";
 import swordDraw from "../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion";
 import {nameAvatarContext, soundContext} from "../App";
-import { score } from './Quiz'
+
 
 
 export default function Highscore() {
@@ -27,17 +27,18 @@ export default function Highscore() {
                 animate={{scaleY: 1}}
                 exit={{scaleY: 0}}
             >
-                <div>
+                <div className="StartMenuButtons">
+                    <h1>*Under development*</h1>
+
+                    <h1>{nameAvatarValue.name}: score</h1>
+                    <p>Dit is de Highscore page</p>
+
                     <Link to="/">
                         <button className="mainButtonStyling" onClick={() => {
-                            {
-                                soundToggleMute.sound && sound2.play()
-                            }
+                            soundToggleMute.sound && sound2.play()
                         }}>Back
                         </button>
                     </Link>
-                    <h1>{nameAvatarValue.name}: score</h1>
-                    <p>Dit is de Highscore page</p>
                 </div>
             </motion.div>
         </>

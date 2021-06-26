@@ -5,9 +5,7 @@ import {
 } from "react-router-dom";
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3"
-import swordDraw from "../audioclips/swordDraw.mp3"
-import {AnimatePresence, motion} from 'framer-motion'
-import {nameAvatarContext} from "../App";
+import {motion} from 'framer-motion'
 import {soundContext} from "../App";
 
 export default function StartMenu() {
@@ -19,14 +17,6 @@ export default function StartMenu() {
 
     })
 
-    const sound2 = new Howl({
-        src: [swordDraw],
-        autoplay: false,
-        volume: 0.2,
-
-    })
-
-    const nameAvatarValue = useContext(nameAvatarContext)
     const soundToggleMute = useContext(soundContext)
 
     return (
@@ -35,41 +25,46 @@ export default function StartMenu() {
                 initial={{scaleX: 0, scaleY: 0}}
                 animate={{scaleX: 1, scaleY: 1}}
                 exit={{scaleX: 0, scaleY: 0}}
-
             >
                 <div className="StartMenuButtons">
-                    <NavLink to="/InputPage">
-                        <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => {
-                                {
-                                    soundToggleMute.sound && sound1.play()
-                                }
-                            }}>New Game
-                            </button>
-                        </motion.div>
-                    </NavLink>
+                    <div className="startMenuButtonlayout">
+                        <NavLink to="/InputPage">
+                            <motion.div whileHover={{scale: 1.1}}>
+                                <button className="mainButtonStyling" onClick={() => {
+                                    {
+                                        soundToggleMute.sound && sound1.play()
+                                    }
+                                }}>New Game
+                                </button>
+                            </motion.div>
+                        </NavLink>
+                    </div>
 
-                    <Link to="/OptionsPage">
-                        <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => {
-                                {
-                                    soundToggleMute.sound && sound1.play()
-                                }
-                            }}>Options
-                            </button>
-                        </motion.div>
-                    </Link>
+                    <div className="startMenuButtonlayout">
+                        <Link to="/OptionsPage">
+                            <motion.div whileHover={{scale: 1.1}}>
+                                <button className="mainButtonStyling" onClick={() => {
+                                    {
+                                        soundToggleMute.sound && sound1.play()
+                                    }
+                                }}>Options
+                                </button>
+                            </motion.div>
+                        </Link>
+                    </div>
 
-                    <Link to="/Highscore">
-                        <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => {
-                                {
-                                    soundToggleMute.sound && sound1.play()
-                                }
-                            }}>Highscore
-                            </button>
-                        </motion.div>
-                    </Link>
+                    <div className="startMenuButtonlayout">
+                        <Link to="/Highscore">
+                            <motion.div whileHover={{scale: 1.1}}>
+                                <button className="mainButtonStyling" onClick={() => {
+                                    {
+                                        soundToggleMute.sound && sound1.play()
+                                    }
+                                }}>Highscore
+                                </button>
+                            </motion.div>
+                        </Link>
+                    </div>
                 </div>
             </motion.div>
         </>

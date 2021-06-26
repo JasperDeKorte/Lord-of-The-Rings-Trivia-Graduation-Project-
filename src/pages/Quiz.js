@@ -1,13 +1,15 @@
-import React, {useContext, createContext} from 'react'
-import App from "../App";
+import React, {useContext} from 'react'
 import axios from "axios";
 import {
     NavLink
 } from "react-router-dom";
-import {AnimatePresence, motion} from 'framer-motion'
+import {motion} from 'framer-motion'
 import {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
-import {get} from "react-hook-form";
+
+import {Howl} from "howler";
+import swordSFX from "../audioclips/SwordPullOut.mp3";
+import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
@@ -20,7 +22,11 @@ export default function Quiz(props) {
 
     React.useEffect(() => {
         async function fetchData1() {
-           const response = await axios.get("https://the-one-api.dev/v2/")
+            // const headers = {
+            //             'Accept': 'application/json',
+            //             'Authorization': `Bearer ${apiKey}`
+            //         }
+            const response = await axios.get("https://the-one-api.dev/v2/movie")
             console.log("dit is de response: ", response)
             try {
                 console.log("dit is de response: ", response)
@@ -28,6 +34,7 @@ export default function Quiz(props) {
                 console.log(e)
             }
         }
+
         fetchData1()
     }, [])
 
@@ -58,14 +65,22 @@ export default function Quiz(props) {
     const nameAvatarValue = useContext(nameAvatarContext);
     const soundToggleMute = useContext(soundContext)
 
+    const sound2 = new Howl({
+        src: [fail],
+        autoplay: false,
+        volume: 0.2,
+
+    })
+    const sound1 = new Howl({
+        src: [swordSFX],
+        autoplay: false,
+        volume: 0.2,
+
+    })
+
 
     const facts = [
-        {
-            fact: <div>
-                Fact #1
-                {nameAvatarValue.name} {nameAvatarValue.avatar}
-            </div>
-        },
+        {fact: "Fact1"},
         {fact: "Fact2"},
         {fact: "Fact3"},
         {fact: "Fact4"},
@@ -74,14 +89,16 @@ export default function Quiz(props) {
     const questions = [
         {
             questionText:
-                <div>
+                <div className="">
                     <motion.div
                         initial={{scaleY: 0}}
                         animate={{scaleY: 1}}
                         exit={{scaleY: 0}}
                     >
                         <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
-                        <button onClick={() => setShowFact(true)}>ShowFact</button>
+                        <div style={{padding: 20}}>
+                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>ShowFact</button>
+                        </div>
                     </motion.div>
                 </div>,
             answerOptions: [
@@ -89,7 +106,6 @@ export default function Quiz(props) {
                 {answerText: "IM DYING", isCorrect: false},
                 {answerText: "GOLEM", isCorrect: false},
                 {answerText: "FILTHY HOBBITS", isCorrect: false},
-
             ]
         },
         {
@@ -139,6 +155,13 @@ export default function Quiz(props) {
 
     const handleAnswerButtonClick = (isCorrect) => {
         if (isCorrect === true) {
+            soundToggleMute.sound && sound1.play()
+        } else {
+            soundToggleMute.sound && sound2.play()
+        }
+
+
+        if (isCorrect === true) {
             setScore(score + 10);
         }
 
@@ -158,7 +181,7 @@ export default function Quiz(props) {
 
     }
 
-     const ezWin = () => {
+    const ezWin = () => {
         if (nameAvatarValue.name === "Novi") {
             setShowScore(true)
         }
@@ -191,9 +214,6 @@ export default function Quiz(props) {
 
                             ) : (
                                 <>
-                                    <div className="facts-section">
-
-                                    </div>
                                     <div className="question-section">
                                         <div className="scoreAndLives">
                                             <h1 id="playerNameStyling">{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
@@ -204,8 +224,9 @@ export default function Quiz(props) {
                                             <span
                                                 style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
                                         </div>
-                                        <div className="question-text">{questions[currentQuestion].questionText}</div>
+                                        <div className="">{questions[currentQuestion].questionText}</div>
                                     </div>
+
                                     <div className="answer-section">
                                         {questions[currentQuestion].answerOptions.map((answerOption) =>
                                             <button className="quizButtonStyling"
