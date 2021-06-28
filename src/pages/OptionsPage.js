@@ -7,6 +7,8 @@ import {
 import swordDraw from "../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion"
 import {soundContext} from "../App";
+import soundON from "../assets/soundON.png"
+import soundOFF from "../assets/soundOFF.png"
 
 // GELUID GLOBAL MAKEN
 // 'http://goldfirestudios.com/proj/howlerjs/sound.ogg'
@@ -16,7 +18,10 @@ import {soundContext} from "../App";
 // ]
 
 
+
 export default function OptionsPage() {
+    const [soundIcon, setSoundIcon] = React.useState(soundON)
+
     const soundToggleMute = useContext(soundContext);
     const sound2 = new Howl({
         src: [swordDraw],
@@ -49,6 +54,10 @@ export default function OptionsPage() {
                             <button className="mainButtonStyling" onClick={() => soundToggleOff()}>Turn sound off
                             </button>
                         </motion.div>
+                    </div>
+
+                    <div>
+                        {soundIcon}
                     </div>
 
                     <div className="startMenuButtonlayout">

@@ -149,9 +149,9 @@ body {
     top: 1px;
 }
 
-.app {
-    color: mediumvioletred;
-    display: block;
+.questionLayout {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

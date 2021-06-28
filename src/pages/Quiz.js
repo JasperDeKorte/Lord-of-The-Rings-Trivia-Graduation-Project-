@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, Component } from 'react'
 import axios from "axios";
 import {
     NavLink
@@ -10,15 +10,24 @@ import {soundContext} from "../App";
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
 import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
+import {render} from "@testing-library/react";
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
 export default function Quiz(props) {
+//----------------------useStates and useContexts------------------
     const [quote, setQuote] = React.useState()
     const [character, setCharacter] = React.useState();
-    const [counstScore, setCountScore] = React.useState();
+    const [score, setScore] = React.useState(0);
+    const [showFact, setShowFact] = React.useState(true);
+    const [counter, setCounter] = React.useState(30);
+    const nameAvatarValue = useContext(nameAvatarContext);
+    const soundToggleMute = useContext(soundContext)
 
+
+//----------------------useEffect API Mounting------------------
     const axios = require("axios")
+
 
     React.useEffect(() => {
         async function fetchData1() {
@@ -26,13 +35,13 @@ export default function Quiz(props) {
             //             'Accept': 'application/json',
             //             'Authorization': `Bearer ${apiKey}`
             //         }
-            const response = await axios.get("https://the-one-api.dev/v2/movie")
-            console.log("dit is de response: ", response)
-            try {
-                console.log("dit is de response: ", response)
-            } catch (e) {
-                console.log(e)
-            }
+            // const response = await axios.get("https://the-one-api.dev/v2/movie")
+            // console.log("dit is de response: ", response)
+            // try {
+            //     console.log("dit is de response: ", response)
+            // } catch (e) {
+            //     console.log(e)
+            // }
         }
 
         fetchData1()
@@ -60,11 +69,8 @@ export default function Quiz(props) {
     // }, []);
 
 
-    const [score, setScore] = React.useState(0);
-    const [showFact, setShowFact] = React.useState(true);
-    const nameAvatarValue = useContext(nameAvatarContext);
-    const soundToggleMute = useContext(soundContext)
 
+//----------------------SoundEffect Variables------------------
     const sound2 = new Howl({
         src: [fail],
         autoplay: false,
@@ -78,7 +84,7 @@ export default function Quiz(props) {
 
     })
 
-
+//----------------------Questions and facts arrays------------------
     const facts = [
         {fact: "Fact1"},
         {fact: "Fact2"},
@@ -97,7 +103,8 @@ export default function Quiz(props) {
                     >
                         <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
                         <div style={{padding: 20}}>
-                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>ShowFact</button>
+                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>ShowFact
+                            </button>
                         </div>
                     </motion.div>
                 </div>,
@@ -147,7 +154,7 @@ export default function Quiz(props) {
         },
     ]
 
-
+//----------------------Question Logics------------------
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
 
     const [showScore, setShowScore] = React.useState(false);
@@ -171,8 +178,8 @@ export default function Quiz(props) {
         } else {
             setShowScore(true);
         }
-        setCurrentQuestion(nextQuestion);
 
+        setCurrentQuestion(nextQuestion);
         if (nextQuestion < facts.length) {
             setShowFact(true)
         } else {
@@ -180,66 +187,83 @@ export default function Quiz(props) {
         }
 
     }
+//----------------------Timer--------------------------
+    React.useEffect(() => {
+        const timer =
+            counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+            if (counter === 0) {
+                const nextQuestion = currentQuestion + 1;
+                if (nextQuestion < questions.length) {
+                    setCurrentQuestion(nextQuestion);
+                    setCounter(30)
+                } else {
+                    setShowScore(true);
+                }
+                setCurrentQuestion(nextQuestion);
+                if (nextQuestion < facts.length) {
+                    setShowFact(true)
+                } else {
+                    setShowFact(false)
+                }
+            }
+        return () => clearInterval(timer) ;
+    }, [counter]);
 
-    const ezWin = () => {
-        if (nameAvatarValue.name === "Novi") {
-            setShowScore(true)
-        }
-    }
+//----------------------Display----------------------------
+        return (
+            <>
+                <motion.div
+                    initial={{scaleY: 0}}
+                    animate={{scaleY: 1}}
+                    exit={{scaleY: 0}}
+                >
+                    <div className="randomFact">
+                        {showFact ? (<>
+                                <h1>Time remaining: {counter}</h1>
+                                <div className="question-text">{facts[currentQuestion].fact}</div>
+                                <button onClick={() => setShowFact(false)}>showQuestion</button>
+                            </>
+                        ) : (
+                            <div className="questionLayout">
+                                {showScore ? (
+                                    <>
+                                        <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
+                                        <p id='scoreEnding' className="score-section">You scored {score} out
+                                            of {questions.length * 10} points!</p>
+                                        <NavLink to="/">
+                                            <button className="mainButtonStyling">back</button>
+                                        </NavLink>
+                                    </>
 
-
-    return (
-        <>
-            <motion.div
-                initial={{scaleY: 0}}
-                animate={{scaleY: 1}}
-                exit={{scaleY: 0}}
-            >
-                <div className="randomFact">
-                    {showFact ? (<>
-                            <div className="question-text">{facts[currentQuestion].fact}</div>
-                            <button onClick={() => setShowFact(false)}>showQuestion</button>
-                        </>
-                    ) : (
-                        <div className="app">
-                            {showScore ? (
-                                <>
-                                    <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                    <p id='scoreEnding' className="score-section">You scored {score} out
-                                        of {questions.length * 10} points!</p>
-                                    <NavLink to="/">
-                                        <button className="mainButtonStyling">back</button>
-                                    </NavLink>
-                                </>
-
-                            ) : (
-                                <>
-                                    <div className="question-section">
-                                        <div className="scoreAndLives">
-                                            <h1 id="playerNameStyling">{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                            <p><h1 id="livesStyling">Lives: N.A. </h1></p>
-                                            <p><h1 id="scoreStyling">Score: {score}</h1></p>
-                                        </div>
-                                        <div className="question-count">
+                                ) : (
+                                    <>
+                                        <div className="question-section">
+                                            <div className="scoreAndLives">
+                                                <h1 id="playerNameStyling">{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
+                                                <h1>Time remaining: {counter}</h1>
+                                                <p><h1 id="livesStyling">Lives: N.A. </h1></p>
+                                                <p><h1 id="scoreStyling">Score: {score}</h1></p>
+                                            </div>
+                                            <div className="question-count">
                                             <span
                                                 style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
+                                            </div>
+                                            <div className="">{questions[currentQuestion].questionText}</div>
                                         </div>
-                                        <div className="">{questions[currentQuestion].questionText}</div>
-                                    </div>
 
-                                    <div className="answer-section">
-                                        {questions[currentQuestion].answerOptions.map((answerOption) =>
-                                            <button className="quizButtonStyling"
-                                                    onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
-                                    </div>
-                                </>
-                            )}
-                        </div>
-                    )}
-                </div>
+                                        <div className="answer-section">
+                                            {questions[currentQuestion].answerOptions.map((answerOption) =>
+                                                <button className="quizButtonStyling"
+                                                        onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
-            </motion.div>
-        </>
+                </motion.div>
+            </>
 
-    )
+        )
 }
