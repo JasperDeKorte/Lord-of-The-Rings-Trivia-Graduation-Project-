@@ -10,19 +10,13 @@ import {soundContext} from "../App";
 import soundON from "../assets/soundON.png"
 import soundOFF from "../assets/soundOFF.png"
 
-// GELUID GLOBAL MAKEN
-// 'http://goldfirestudios.com/proj/howlerjs/sound.ogg'
-
-// const music = [
-//     {sound: 'http://goldfirestudios.com/proj/howlerjs/sound.mp3', label: "music"}
-// ]
-
-
 
 export default function OptionsPage() {
-    const [soundIcon, setSoundIcon] = React.useState(soundON)
+
 
     const soundToggleMute = useContext(soundContext);
+
+
     const sound2 = new Howl({
         src: [swordDraw],
         autoplay: false,
@@ -32,11 +26,13 @@ export default function OptionsPage() {
 
     function soundToggleOff() {
         soundToggleMute.setSound(false);
+        soundToggleMute.setSoundIcon(soundOFF);
         console.log("Sound is set Off");
     }
 
     function soundToggleOn() {
         soundToggleMute.setSound(true);
+        soundToggleMute.setSoundIcon(soundON);
         console.log("Sound is set on")
     }
 
@@ -51,18 +47,18 @@ export default function OptionsPage() {
                 <div className="mainLayoutStyling">
                     <div className="startMenuButtonlayout">
                         <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => soundToggleOff()}>Turn sound off
+                            <button className="mainButtonStyling" onClick={() => soundToggleOn()}>Turn sound on
                             </button>
                         </motion.div>
                     </div>
 
                     <div>
-                        {soundIcon}
+                        <img id="soundIcon" src={soundToggleMute.soundIcon} alt=""/>
                     </div>
 
                     <div className="startMenuButtonlayout">
                         <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => soundToggleOn()}>Turn sound on
+                            <button className="mainButtonStyling" onClick={() => soundToggleOff()}>Turn sound off
                             </button>
                         </motion.div>
                     </div>
@@ -75,17 +71,19 @@ export default function OptionsPage() {
                     </motion.div>
 
                 </div>
+
+
+                <div className="OptionsPageButtons">
+                    <Link to="/">
+                        <motion.div whileHover={{scale: 1.1}}>
+                            <button className="mainButtonStyling" onClick={() => {
+                                soundToggleMute.sound && sound2.play()
+                            }}>Back
+                            </button>
+                        </motion.div>
+                    </Link>
+                </div>
             </motion.div>
-
-            <div>
-                <Link to="/">
-                    <button className="mainButtonStyling" onClick={() => {
-                        soundToggleMute.sound && sound2.play()
-                    }}>Back
-                    </button>
-                </Link>
-            </div>
-
         </>
     )
 }

@@ -12,6 +12,9 @@ import OptionsPage from "./pages/OptionsPage";
 import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
 
+import soundON from "./assets/soundON.png";
+import soundOFF from "./assets/soundOFF.png";
+
 
 export const nameAvatarContext = createContext()
 export const soundContext = createContext()
@@ -20,13 +23,14 @@ export default function App() {
     const [name, setName] = React.useState("")
     const [avatar, setAvatar] = React.useState("")
     const [sound, setSound] = React.useState(true)
+    const [soundIcon, setSoundIcon] = React.useState(soundON)
 
     return (
 
         <div className="Root">
             <div className="startMenuDiv">
                 <Router>
-                    <soundContext.Provider value={{sound, setSound}}>
+                    <soundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
                         <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
                             <AnimatePresence exitBeforeEnter>
                                 <Switch>

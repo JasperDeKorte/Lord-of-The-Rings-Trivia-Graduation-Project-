@@ -11,6 +11,7 @@ import {soundContext} from "../App";
 import {nameAvatarContext} from '../App'
 
 
+
 export default function InputPage(props) {
     const nameAvatarValue = useContext(nameAvatarContext)
     const soundToggleMute = useContext(soundContext)
@@ -48,11 +49,16 @@ export default function InputPage(props) {
                     <label id="selectYourAvatarLabel" className="generalTextStyling">Select Your Avatar</label>
                         <select className="mainInputStyling" name="avaterMenu" value={nameAvatarValue.avatar}
                                 onChange={(event) => nameAvatarValue.setAvatar(event.target.value)}>
-                            <option id={"emoji1"}>Gollum</option>
                             <option id={"emoji2"}>😂</option>
                             <option id={"emoji3"}>😎</option>
                             <option id={"emoji4"}>✌</option>
-                            <option id={"emoji5"}></option>
+                            <option id={"emoji5"}>❤</option>
+                            <option id={"emoji6"}>🙄</option>
+                            <option id={"emoji7"}>😜</option>
+                            <option id={"emoji8"}>🎱</option>
+                            <option id={"emoji9"}>🍔</option>
+                            <option id={"emoji10"}>🍤</option>
+                            <option id={"emoji-Empty"}></option>
                         </select>
                 </div>
 

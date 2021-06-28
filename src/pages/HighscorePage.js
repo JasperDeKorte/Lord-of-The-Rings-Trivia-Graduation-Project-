@@ -20,6 +20,8 @@ export default function Highscore() {
 
     })
 
+    localStorage.setItem("HighscoreName", nameAvatarValue.name)
+
     return (
         <>
             <motion.div
@@ -29,7 +31,6 @@ export default function Highscore() {
             >
                 <div className="StartMenuButtons">
                     <h1>*Under development*</h1>
-
                     <h1>{nameAvatarValue.name}: score</h1>
                     <p>Dit is de Highscore page</p>
 

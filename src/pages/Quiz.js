@@ -175,6 +175,7 @@ export default function Quiz(props) {
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
+            setCounter(30)
         } else {
             setShowScore(true);
         }
