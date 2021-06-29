@@ -10,6 +10,7 @@ import {soundContext} from "../App";
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
 import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
+import clock from "../assets/clock.png"
 import {render} from "@testing-library/react";
 
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
@@ -103,8 +104,6 @@ export default function Quiz(props) {
                     >
                         <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
                         <div style={{padding: 20}}>
-                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>ShowFact
-                            </button>
                         </div>
                     </motion.div>
                 </div>,
@@ -118,7 +117,6 @@ export default function Quiz(props) {
         {
             questionText: <div>
                 <h2>Thi sis question #2</h2>
-                <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
                 {answerText: "answer #1", isCorrect: false},
@@ -130,7 +128,6 @@ export default function Quiz(props) {
         {
             questionText: <div>
                 <h2>This is question #3</h2>
-                <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
                 {answerText: "Answer 1", isCorrect: false},
@@ -143,7 +140,6 @@ export default function Quiz(props) {
             questionText: <div>
                 <blockquote>{quote}</blockquote>
                 <cite>- {character}</cite>
-                <button onClick={() => setShowFact(true)}>ShowFact</button>
             </div>,
             answerOptions: [
                 {answerText: "Answer 1", isCorrect: false},
@@ -189,26 +185,26 @@ export default function Quiz(props) {
 
     }
 //----------------------Timer--------------------------
-    React.useEffect(() => {
-        const timer =
-            counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-            if (counter === 0) {
-                const nextQuestion = currentQuestion + 1;
-                if (nextQuestion < questions.length) {
-                    setCurrentQuestion(nextQuestion);
-                    setCounter(30)
-                } else {
-                    setShowScore(true);
-                }
-                setCurrentQuestion(nextQuestion);
-                if (nextQuestion < facts.length) {
-                    setShowFact(true)
-                } else {
-                    setShowFact(false)
-                }
-            }
-        return () => clearInterval(timer) ;
-    }, [counter]);
+//     React.useEffect(() => {
+//         const timer =
+//             counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+//             if (counter === 0) {
+//                 const nextQuestion = currentQuestion + 1;
+//                 if (nextQuestion < questions.length) {
+//                     setCurrentQuestion(nextQuestion);
+//                     setCounter(30)
+//                 } else {
+//                     setShowScore(true);
+//                 }
+//                 setCurrentQuestion(nextQuestion);
+//                 if (nextQuestion < facts.length) {
+//                     setShowFact(true)
+//                 } else {
+//                     setShowFact(false)
+//                 }
+//             }
+//         return () => clearInterval(timer) ;
+//     }, [counter]);
 
 //----------------------Display----------------------------
         return (
@@ -220,9 +216,9 @@ export default function Quiz(props) {
                 >
                     <div className="randomFact">
                         {showFact ? (<>
-                                <h1>Time remaining: {counter}</h1>
+                                <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
                                 <div className="question-text">{facts[currentQuestion].fact}</div>
-                                <button onClick={() => setShowFact(false)}>showQuestion</button>
+                                <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show Question</button>
                             </>
                         ) : (
                             <div className="questionLayout">
@@ -239,17 +235,33 @@ export default function Quiz(props) {
                                 ) : (
                                     <>
                                         <div className="question-section">
-                                            <div className="scoreAndLives">
-                                                <h1 id="playerNameStyling">{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                                <h1>Time remaining: {counter}</h1>
-                                                <p><h1 id="livesStyling">Lives: N.A. </h1></p>
-                                                <p><h1 id="scoreStyling">Score: {score}</h1></p>
-                                            </div>
+
+                                                <div id="playerNamePosition">
+                                                    <h1 >{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
+                                                </div>
+
+                                                <div id="timerIconPosition">
+                                                    <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
+                                                </div>
+
+                                                <div id="livesPosition">
+                                                    <h1 id="livesStyling">Lives: N.A. </h1>
+                                                </div>
+
+                                                <div id="scorePosition">
+                                                    <h1 id="scoreStyling">Score: {score}</h1>
+                                                </div>
+                                        </div>
+
+
+
                                             <div className="question-count">
-                                            <span
-                                                style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
+                                            <span style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
                                             </div>
                                             <div className="">{questions[currentQuestion].questionText}</div>
+
+                                        <div id="showFactQuestionPosition">
+                                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>Show Fact</button>
                                         </div>
 
                                         <div className="answer-section">

@@ -10,15 +10,7 @@ body {
     font-family: 'MedievalSharp', cursive;
 }
 
-#LOTRlogo {
-    width: 200px;
-    height: 200px;
-}
 
-#soundIcon {
-    width: 50px;
-    height: 50px;
-}
 
 .Root {
     display: flex;
@@ -41,9 +33,9 @@ body {
     background-color: #ded17c;
 }
 
-.question-text, question-section, question-count, answer-section {
 
-}
+
+
 
 .mainLayoutStyling {
     display: flex;
@@ -51,6 +43,20 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+}
+
+#LOTRlogo {
+    width: 200px;
+    height: 200px;
+}
+
+#soundIcon {
+    width: 50px;
+    height: 50px;
+}
+#timerIcon {
+    width: 30px;
+    height: 30px;
 }
 
 #scoreEnding {
@@ -70,6 +76,38 @@ body {
     align-items: flex-start;
     justify-content: flex-end;
 }
+
+#playerNamePosition {
+    position: absolute;
+    top: 0px;
+    left: 100px;
+}
+
+#timerIconPosition {
+    position: absolute;
+    top: 0px;
+}
+
+#livesPosition {
+    position: absolute;
+    left: 100px;
+    top: 70px;
+}
+
+#scorePosition {
+    position: absolute;
+    right: 100px;
+    top: 25px;
+}
+
+showFactQuestionPosition {
+    position: absolute;
+
+}
+
+
+
+
 
 
 
@@ -120,6 +158,10 @@ body {
     top: 1px;
 }
 
+
+
+
+
 .quizButtonStyling {
     justify-content: center;
     align-items: center;
@@ -156,10 +198,19 @@ body {
 
 .questionLayout {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 1000px;
+    height: 600px;
 }
+
+
+
+
+
+
 
 .generalTextStyling {
     display: flex;
@@ -247,5 +298,6 @@ body {
     color: #ffe314;
     width: 225px;
 }
+
 
 

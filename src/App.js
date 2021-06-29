@@ -11,6 +11,7 @@ import Inputpage from "./pages/InputPage";
 import OptionsPage from "./pages/OptionsPage";
 import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
+import Firebase from "../src/firebaseTest"
 
 import soundON from "./assets/soundON.png";
 import soundOFF from "./assets/soundOFF.png";
@@ -52,6 +53,10 @@ export default function App() {
 
                                     <Route path="/OptionsPage">
                                         <OptionsPage/>
+                                    </Route>
+
+                                    <Route exact path="/Firebase">
+                                        <Firebase />
                                     </Route>
                                 </Switch>
                             </AnimatePresence>
