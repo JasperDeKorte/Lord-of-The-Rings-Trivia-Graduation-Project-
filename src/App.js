@@ -1,4 +1,4 @@
-import React, {createContext} from "react";
+import React, {createContext, useState} from "react";
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,10 +21,10 @@ export const nameAvatarContext = createContext()
 export const soundContext = createContext()
 
 export default function App() {
-    const [name, setName] = React.useState("")
-    const [avatar, setAvatar] = React.useState("")
-    const [sound, setSound] = React.useState(true)
-    const [soundIcon, setSoundIcon] = React.useState(soundON)
+    const [name, setName] = useState("")
+    const [avatar, setAvatar] = useState("")
+    const [sound, setSound] = useState(true)
+    const [soundIcon, setSoundIcon] = useState(soundON)
 
     return (
 

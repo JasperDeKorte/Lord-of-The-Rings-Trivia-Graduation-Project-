@@ -1,52 +1,69 @@
-import React, {useContext, Component } from 'react'
-import axios from "axios";
+import React, {useContext, useEffect, useState} from 'react'
+import axios from "axios"
 import {
     NavLink
 } from "react-router-dom";
 import {motion} from 'framer-motion'
 import {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
-
+import StartMenu from "./StartMenu";
+//--------------------------SFX Imports---------------------------------
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
 import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
 import clock from "../assets/clock.png"
-import {render} from "@testing-library/react";
-
+import gollem from "../assets/Gollum.png"
+//------------------------------Code-----------------------------------
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
-
 export default function Quiz(props) {
-//----------------------useStates and useContexts------------------
-    const [quote, setQuote] = React.useState()
-    const [character, setCharacter] = React.useState();
-    const [score, setScore] = React.useState(0);
-    const [showFact, setShowFact] = React.useState(true);
-    const [counter, setCounter] = React.useState(30);
+
+//----------------------useStates and useContexts----------------------
+    const [quote, setQuote] = useState()
+    const [character, setCharacter] = useState();
+    const [score, setScore] = useState(0);
+    const [showFact, setShowFact] = useState(true);
+    const [counter, setCounter] = useState(30);
+
     const nameAvatarValue = useContext(nameAvatarContext);
     const soundToggleMute = useContext(soundContext)
 
 
-//----------------------useEffect API Mounting------------------
-    const axios = require("axios")
+//----------------------useEffect API Mounting-------------------------
+    const [characters, setCharacters] = useState([])
+    console.log("Wat is de state: ", characters)
 
-
-    React.useEffect(() => {
-        async function fetchData1() {
-            // const headers = {
-            //             'Accept': 'application/json',
-            //             'Authorization': `Bearer ${apiKey}`
-            //         }
-            // const response = await axios.get("https://the-one-api.dev/v2/movie")
-            // console.log("dit is de response: ", response)
-            // try {
-            //     console.log("dit is de response: ", response)
-            // } catch (e) {
-            //     console.log(e)
-            // }
+    useEffect(() => {
+        console.log("ON MOUNT: ")
+        const headers = {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
         }
 
-        fetchData1()
+        async function fetchData() {
+            // const responseMovie = await axios.get("https://the-one-api.dev/v2/movie", {
+            //     headers: headers
+            // });
+            // console.log(responseMovie);
+
+            const responseCharacterGollem = await axios.get("https://the-one-api.dev/v2/character/", {
+                headers: headers
+            });
+            console.log(responseCharacterGollem.data.docs);
+            setCharacters(responseCharacterGollem.data.docs);
+
+           const found = characters.find(function (character, index) {
+                if (character._id == "5cd99d4bde30eff6ebccfe9e")
+                    return true;
+            });
+console.log("Dit is Found: ", found)
+
+// gollem 5cd99d4bde30eff6ebccfe9e
+
+        }
+
+        fetchData();
     }, [])
+
 
     // React.useEffect(() => {
     //     const headers = {
@@ -70,8 +87,7 @@ export default function Quiz(props) {
     // }, []);
 
 
-
-//----------------------SoundEffect Variables------------------
+//----------------------SoundEffect Variables----------------------
     const sound2 = new Howl({
         src: [fail],
         autoplay: false,
@@ -87,7 +103,17 @@ export default function Quiz(props) {
 
 //----------------------Questions and facts arrays------------------
     const facts = [
-        {fact: "Fact1"},
+        {
+            fact: <div>
+                <img src={gollem} alt="Image Not Available"/>
+                <h2>Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor, on of the three early hobbit
+                    types.</h2>
+                <div>{}</div>
+                {/*<p>{characters.name}</p>*/}
+                {/*<p>{characters.race}</p>*/}
+
+            </div>
+        },
         {fact: "Fact2"},
         {fact: "Fact3"},
         {fact: "Fact4"},
@@ -150,10 +176,10 @@ export default function Quiz(props) {
         },
     ]
 
-//----------------------Question Logics------------------
-    const [currentQuestion, setCurrentQuestion] = React.useState(0);
+//----------------------Question Logics--------------------------------
+    const [currentQuestion, setCurrentQuestion] = useState(0);
 
-    const [showScore, setShowScore] = React.useState(false);
+    const [showScore, setShowScore] = useState(false);
 
 
     const handleAnswerButtonClick = (isCorrect) => {
@@ -184,7 +210,7 @@ export default function Quiz(props) {
         }
 
     }
-//----------------------Timer--------------------------
+//----------------------Timer-----------------------------------
 //     React.useEffect(() => {
 //         const timer =
 //             counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
@@ -206,77 +232,81 @@ export default function Quiz(props) {
 //         return () => clearInterval(timer) ;
 //     }, [counter]);
 
-//----------------------Display----------------------------
-        return (
-            <>
-                <motion.div
-                    initial={{scaleY: 0}}
-                    animate={{scaleY: 1}}
-                    exit={{scaleY: 0}}
-                >
-                    <div className="randomFact">
-                        {showFact ? (<>
-                                <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
-                                <div className="question-text">{facts[currentQuestion].fact}</div>
-                                <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show Question</button>
-                            </>
-                        ) : (
-                            <div className="questionLayout">
-                                {showScore ? (
-                                    <>
-                                        <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                        <p id='scoreEnding' className="score-section">You scored {score} out
-                                            of {questions.length * 10} points!</p>
-                                        <NavLink to="/">
-                                            <button className="mainButtonStyling">back</button>
-                                        </NavLink>
-                                    </>
+//----------------------Display-------------------------------------
+    return (
+        <>
+            <motion.div
+                initial={{scaleY: 0}}
+                animate={{scaleY: 1}}
+                exit={{scaleY: 0}}
+            >
+                <div className="randomFact">
+                    {showFact ? (<>
+                            <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
+                            <div className="question-text">{facts[currentQuestion].fact}</div>
+                            <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show
+                                Question
+                            </button>
+                        </>
+                    ) : (
+                        <div className="questionLayout">
+                            {showScore ? (
+                                <>
+                                    <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
+                                    <p id='scoreEnding' className="score-section">You scored {score} out
+                                        of {questions.length * 10} points!</p>
+                                    <NavLink to="/">
+                                        <button className="mainButtonStyling">back</button>
+                                    </NavLink>
+                                </>
 
-                                ) : (
-                                    <>
-                                        <div className="question-section">
+                            ) : (
+                                <>
+                                    <div className="question-section">
 
-                                                <div id="playerNamePosition">
-                                                    <h1 >{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                                </div>
-
-                                                <div id="timerIconPosition">
-                                                    <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
-                                                </div>
-
-                                                <div id="livesPosition">
-                                                    <h1 id="livesStyling">Lives: N.A. </h1>
-                                                </div>
-
-                                                <div id="scorePosition">
-                                                    <h1 id="scoreStyling">Score: {score}</h1>
-                                                </div>
+                                        <div id="playerNamePosition">
+                                            <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
                                         </div>
 
-
-
-                                            <div className="question-count">
-                                            <span style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
-                                            </div>
-                                            <div className="">{questions[currentQuestion].questionText}</div>
-
-                                        <div id="showFactQuestionPosition">
-                                            <button className="showFactQuestionButton" onClick={() => setShowFact(true)}>Show Fact</button>
+                                        <div id="timerIconPosition">
+                                            <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
                                         </div>
 
-                                        <div className="answer-section">
-                                            {questions[currentQuestion].answerOptions.map((answerOption) =>
-                                                <button className="quizButtonStyling"
-                                                        onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
+                                        <div id="livesPosition">
+                                            <h1 id="livesStyling">Lives: N.A. </h1>
                                         </div>
-                                    </>
-                                )}
-                            </div>
-                        )}
-                    </div>
 
-                </motion.div>
-            </>
+                                        <div id="scorePosition">
+                                            <h1 id="scoreStyling">Score: {score}</h1>
+                                        </div>
+                                    </div>
 
-        )
+
+                                    <div className="question-count">
+                                        <span
+                                            style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
+                                    </div>
+                                    <div className="">{questions[currentQuestion].questionText}</div>
+
+                                    <div id="showFactQuestionPosition">
+                                        <button className="showFactQuestionButton"
+                                                onClick={() => setShowFact(true)}>Show Fact
+                                        </button>
+                                    </div>
+
+                                    <div className="answer-section">
+                                        {questions[currentQuestion].answerOptions.map((answerOption) =>
+                                            <button className="quizButtonStyling"
+                                                    onClick={() => handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}</button>)}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    )}
+                </div>
+
+            </motion.div>
+        </>
+
+    )
 }
