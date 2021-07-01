@@ -45,25 +45,23 @@ export default function Quiz(props) {
             // });
             // console.log(responseMovie);
 
+
             const responseCharacterGollem = await axios.get("https://the-one-api.dev/v2/character/", {
                 headers: headers
             });
             console.log(responseCharacterGollem.data.docs);
             setCharacters(responseCharacterGollem.data.docs);
 
-           const found = characters.find(function (character, index) {
-                if (character._id == "5cd99d4bde30eff6ebccfe9e")
-                    return true;
-            });
-console.log("Dit is Found: ", found)
-
-// gollem 5cd99d4bde30eff6ebccfe9e
-
         }
 
         fetchData();
     }, [])
 
+    const Gollum = characters.find(function(character) {
+        if (character._id == "5cd99d4bde30eff6ebccfe9e")
+            return true;
+    });
+    console.log("dit is Gollem: ", Gollum)
 
     // React.useEffect(() => {
     //     const headers = {
@@ -104,14 +102,15 @@ console.log("Dit is Found: ", found)
 //----------------------Questions and facts arrays------------------
     const facts = [
         {
-            fact: <div>
-                <img src={gollem} alt="Image Not Available"/>
-                <h2>Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor, on of the three early hobbit
-                    types.</h2>
-                <div>{}</div>
-                {/*<p>{characters.name}</p>*/}
-                {/*<p>{characters.race}</p>*/}
-
+            fact: <div className="fact1">
+                <h2 className="fact-thirdItem" >Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor, on of the three early hobbit types.</h2>
+                <img id="Gollum-img" className="fact-firstItem" src={gollem} alt="Image Not Available"/>
+                <div className="fact-secondItem" style={{fontSize: 30}}>
+                    <div>Name:             <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
+                    <div>Date of Birth:     <span style={{fontWeight: "bold"}}>{Gollum.birth}</span></div>
+                    <div>Date of Death:     <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
+                    <div>Race:              <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
+                </div>
             </div>
         },
         {fact: "Fact2"},
@@ -128,7 +127,7 @@ console.log("Dit is Found: ", found)
                         animate={{scaleY: 1}}
                         exit={{scaleY: 0}}
                     >
-                        <h2>In LOTR, what does 'Golem' say when he freaks out again?</h2>
+                        <h2>In LOTR, what does 'Gollum' say when he freaks out again?</h2>
                         <div style={{padding: 20}}>
                         </div>
                     </motion.div>
@@ -242,7 +241,7 @@ console.log("Dit is Found: ", found)
             >
                 <div className="randomFact">
                     {showFact ? (<>
-                            <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
+                            <h1 className="timerIcon-Facts" ><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
                             <div className="question-text">{facts[currentQuestion].fact}</div>
                             <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show
                                 Question

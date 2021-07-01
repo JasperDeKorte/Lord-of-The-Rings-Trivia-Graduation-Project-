@@ -50,6 +50,11 @@ body {
     height: 200px;
 }
 
+#Gollum-img {
+    width: 200px;
+    height: 300px;
+}
+
 #soundIcon {
     width: 50px;
     height: 50px;
@@ -270,6 +275,12 @@ showFactQuestionPosition {
     padding: 20px;
 }
 
+.randomFact {
+    display: flex;flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .showFactQuestionButton {
     justify-content: center;
     align-items: center;
@@ -299,5 +310,36 @@ showFactQuestionPosition {
     width: 225px;
 }
 
+.timerIcon-Facts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.fact1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.fact-firstItem {
+    
+}
+
+.fact-secondItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/*.fact-thirdItem {*/
+/*    position: absolute;*/
+/*    top: 200px;*/
+/*}*/
+
+/*.timerIcon-Facts {*/
+/*    position: absolute;*/
+/*}*/
