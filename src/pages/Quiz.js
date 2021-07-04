@@ -4,7 +4,7 @@ import {
     NavLink
 } from "react-router-dom";
 import {motion} from 'framer-motion'
-import {nameAvatarContext} from '../App'
+import App, {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
 import StartMenu from "./StartMenu";
 //--------------------------SFX Imports---------------------------------
@@ -17,52 +17,7 @@ import gollem from "../assets/Gollum.png"
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 export default function Quiz(props) {
 
-//----------------------useStates and useContexts----------------------
-    const [quote, setQuote] = useState()
-    const [character, setCharacter] = useState();
-    const [score, setScore] = useState(0);
-    const [showFact, setShowFact] = useState(true);
-    const [counter, setCounter] = useState(30);
-
-    const nameAvatarValue = useContext(nameAvatarContext);
-    const soundToggleMute = useContext(soundContext)
-
-
-//----------------------useEffect API Mounting-------------------------
-    const [characters, setCharacters] = useState([])
-    console.log("Wat is de state: ", characters)
-
-    useEffect(() => {
-        console.log("ON MOUNT: ")
-        const headers = {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        }
-
-        async function fetchData() {
-            // const responseMovie = await axios.get("https://the-one-api.dev/v2/movie", {
-            //     headers: headers
-            // });
-            // console.log(responseMovie);
-
-
-            const responseCharacterGollem = await axios.get("https://the-one-api.dev/v2/character/", {
-                headers: headers
-            });
-            console.log(responseCharacterGollem.data.docs);
-            setCharacters(responseCharacterGollem.data.docs);
-
-        }
-
-        fetchData();
-    }, [])
-
-    const Gollum = characters.find(function(character) {
-        if (character._id == "5cd99d4bde30eff6ebccfe9e")
-            return true;
-    });
-    console.log("dit is Gollem: ", Gollum)
-
+    //--------------------ten zijde gelaten code-----------------------
     // React.useEffect(() => {
     //     const headers = {
     //         'Accept': 'application/json',
@@ -85,6 +40,67 @@ export default function Quiz(props) {
     // }, []);
 
 
+//----------------------useStates and useContexts----------------------
+    const [quote, setQuote] = useState()
+    const [character, setCharacter] = useState();
+    const [score, setScore] = useState(0);
+    const [showFact, setShowFact] = useState(true);
+    const [counter, setCounter] = useState(30);
+    const [characters, setCharacters] = useState(null)
+
+    const nameAvatarValue = useContext(nameAvatarContext);
+    const soundToggleMute = useContext(soundContext)
+
+
+//----------------------useEffect API Mounting-------------------------
+
+    console.log("Wat is de state: ", characters)
+
+    useEffect(() => {
+        console.log("ON MOUNT: ")
+        const headers = {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+        }
+
+        async function fetchData() {
+            // const responseMovie = await axios.get("https://the-one-api.dev/v2/movie", {
+            //     headers: headers
+            // });
+            // console.log(responseMovie);
+
+            console.log("ASYNC Function: ")
+            const responseCharacterGollem = await axios.get("https://the-one-api.dev/v2/character/", {
+                headers: headers
+            });
+            console.log("Dit word in de state gezet: ", responseCharacterGollem.data.docs);
+            setCharacters(responseCharacterGollem.data.docs);
+
+
+
+        }
+
+        console.log("Fetchdata: ")
+        fetchData();
+
+
+
+    }, [])
+    // const Gollum = characters && characters.find(function (character) {
+    //     if (character._id === "5cd99d4bde30eff6ebccfe9e")
+    //         console.log("Find functie getriggered", Gollum)
+    //     return true;
+    // });
+    function isGollum (character) {
+        return character._id === "5cd99d4bde30eff6ebccfe9e"
+    }
+    const Gollum =  characters ? (characters.find(isGollum)) : (<h1>Loading...</h1>)
+    console.log("Rendered Find Function", characters.find(isGollum));
+
+
+
+
+
 //----------------------SoundEffect Variables----------------------
     const sound2 = new Howl({
         src: [fail],
@@ -103,14 +119,17 @@ export default function Quiz(props) {
     const facts = [
         {
             fact: <div className="fact1">
-                <h2 className="fact-thirdItem" >Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor, on of the three early hobbit types.</h2>
+                <h2 className="fact-thirdItem">Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor,
+                    on of the three early hobbit types.</h2>
                 <img id="Gollum-img" className="fact-firstItem" src={gollem} alt="Image Not Available"/>
                 <div className="fact-secondItem" style={{fontSize: 30}}>
-                    <div>Name:             <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
-                    <div>Date of Birth:     <span style={{fontWeight: "bold"}}>{Gollum.birth}</span></div>
-                    <div>Date of Death:     <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
-                    <div>Race:              <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
                 </div>
+                <div>{characters ? (<> {console.log("characters = true in facts")}
+                    <div>Name: <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
+                    <div>Date of Birth: <span style={{fontWeight: "bold"}}>{Gollum.birth}</span></div>
+                    <div>Date of Death: <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
+                    <div>Race: <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
+                </>) : (console.log("characters = false in Facts"), <h1>Loading...</h1>)}</div>
             </div>
         },
         {fact: "Fact2"},
@@ -141,7 +160,7 @@ export default function Quiz(props) {
         },
         {
             questionText: <div>
-                <h2>Thi sis question #2</h2>
+                <h2>This is question #2</h2>
             </div>,
             answerOptions: [
                 {answerText: "answer #1", isCorrect: false},
@@ -241,8 +260,12 @@ export default function Quiz(props) {
             >
                 <div className="randomFact">
                     {showFact ? (<>
-                            <h1 className="timerIcon-Facts" ><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
-                            <div className="question-text">{facts[currentQuestion].fact}</div>
+                            <h1 className="timerIcon-Facts"><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
+
+                            {characters ? (<div
+                                className="question-text">{console.log("Rendered Return Facts Elements: ")}{facts[currentQuestion].fact}</div>) : (
+                                <h1>loading</h1>)}
+
                             <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show
                                 Question
                             </button>

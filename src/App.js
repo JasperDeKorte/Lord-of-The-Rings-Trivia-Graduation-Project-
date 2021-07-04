@@ -17,8 +17,10 @@ import soundON from "./assets/soundON.png";
 import soundOFF from "./assets/soundOFF.png";
 
 
-export const nameAvatarContext = createContext()
-export const soundContext = createContext()
+export const nameAvatarContext = createContext();
+export const soundContext = createContext();
+export const globalStateContext = createContext();
+
 
 export default function App() {
     const [name, setName] = useState("")
@@ -26,42 +28,45 @@ export default function App() {
     const [sound, setSound] = useState(true)
     const [soundIcon, setSoundIcon] = useState(soundON)
 
+
     return (
 
         <div className="Root">
             <div className="startMenuDiv">
                 <Router>
-                    <soundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
-                        <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
-                            <AnimatePresence exitBeforeEnter>
-                                <Switch>
-                                    <Route exact path="/">
-                                        <StartMenu/>
-                                    </Route>
+                    <globalStateContext.Provider value={{}}>
+                        <soundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
+                            <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
+                                <AnimatePresence exitBeforeEnter>
+                                    <Switch>
+                                        <Route exact path="/">
+                                            <StartMenu/>
+                                        </Route>
 
-                                    <Route path="/Quiz">
-                                        <Quiz/>
-                                    </Route>
+                                        <Route path="/Quiz">
+                                            <Quiz/>
+                                        </Route>
 
-                                    <Route path="/Highscore">
-                                        <Highscore/>
-                                    </Route>
+                                        <Route path="/Highscore">
+                                            <Highscore/>
+                                        </Route>
 
-                                    <Route path="/InputPage">
-                                        <Inputpage/>
-                                    </Route>
+                                        <Route path="/InputPage">
+                                            <Inputpage/>
+                                        </Route>
 
-                                    <Route path="/OptionsPage">
-                                        <OptionsPage/>
-                                    </Route>
+                                        <Route path="/OptionsPage">
+                                            <OptionsPage/>
+                                        </Route>
 
-                                    <Route exact path="/Firebase">
-                                        <Firebase />
-                                    </Route>
-                                </Switch>
-                            </AnimatePresence>
-                        </nameAvatarContext.Provider>
-                    </soundContext.Provider>
+                                        <Route exact path="/Firebase">
+                                            <Firebase/>
+                                        </Route>
+                                    </Switch>
+                                </AnimatePresence>
+                            </nameAvatarContext.Provider>
+                        </soundContext.Provider>
+                    </globalStateContext.Provider>
                 </Router>
             </div>
         </div>

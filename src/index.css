@@ -10,8 +10,6 @@ body {
     font-family: 'MedievalSharp', cursive;
 }
 
-
-
 .Root {
     display: flex;
     justify-content: center;
@@ -31,6 +29,17 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ded17c;
+}
+.StartMenuButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.startMenuButtonlayout {
+    display: flex;
+    padding: 20px;
 }
 
 
@@ -105,10 +114,7 @@ body {
     top: 25px;
 }
 
-showFactQuestionPosition {
-    position: absolute;
 
-}
 
 
 
@@ -162,6 +168,10 @@ showFactQuestionPosition {
     position: relative;
     top: 1px;
 }
+
+
+
+
 
 
 
@@ -225,11 +235,23 @@ showFactQuestionPosition {
     font-family: 'MedievalSharp', cursive;
 }
 
+
+
 .OptionsPageSoundButtons {
     display: block;
     flex-direction: column;
     flex-wrap: wrap;
 }
+.OptionsPageButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+
 
 .InputPageNavButtons {
     display: flex;
@@ -254,32 +276,17 @@ showFactQuestionPosition {
     padding: 20px;
 }
 
-.StartMenuButtons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-}
 
-.OptionsPageButtons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-}
 
-.startMenuButtonlayout {
-    display: flex;
-    padding: 20px;
-}
 
-.randomFact {
-    display: flex;flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
+
+
+
+
+
 
 .showFactQuestionButton {
     justify-content: center;
@@ -301,7 +308,6 @@ showFactQuestionPosition {
     width: 200px;
     transition: all 0.2s;
 }
-
 .showFactQuestionButton:hover {
     background: linear-gradient(to bottom, #f2ab1e 5%, #f0c911 100%);
     background-color: #29d84f;
@@ -310,12 +316,19 @@ showFactQuestionPosition {
     width: 225px;
 }
 
+
+
+
+.randomFact {
+    display: flex;flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .timerIcon-Facts {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .fact1 {
     position: relative;
     display: flex;
@@ -323,11 +336,9 @@ showFactQuestionPosition {
     justify-content: center;
     align-items: center;
 }
-
 .fact-firstItem {
     
 }
-
 .fact-secondItem {
     display: flex;
     flex-direction: column;
