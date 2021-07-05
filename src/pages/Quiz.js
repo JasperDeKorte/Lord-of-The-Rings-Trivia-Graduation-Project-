@@ -79,11 +79,8 @@ export default function Quiz(props) {
 
 
         }
-
         console.log("Fetchdata: ")
         fetchData();
-
-
 
     }, [])
     // const Gollum = characters && characters.find(function (character) {
@@ -91,12 +88,18 @@ export default function Quiz(props) {
     //         console.log("Find functie getriggered", Gollum)
     //     return true;
     // });
-    function isGollum (character) {
-        return character._id === "5cd99d4bde30eff6ebccfe9e"
-    }
-    const Gollum =  characters ? (characters.find(isGollum)) : (<h1>Loading...</h1>)
-    console.log("Rendered Find Function", characters.find(isGollum));
+    // function isGollum (character) {
+    //     return character._id === "5cd99d4bde30eff6ebccfe9e"
+    // }
+    // const Gollum =  characters ? (characters.find(isGollum)) : (<h1>Loading...</h1>)
+    // console.log("Rendered Find Function", characters.find(isGollum));
 
+   const Gollum = characters && characters.find((character) => {
+        console.log(character)
+       if (character._id === "5cd99d4bde30eff6ebccfe9e")
+           return true
+
+    })
 
 
 
