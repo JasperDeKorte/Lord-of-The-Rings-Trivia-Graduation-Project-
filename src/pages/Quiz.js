@@ -7,12 +7,13 @@ import {motion} from 'framer-motion'
 import App, {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
 import StartMenu from "./StartMenu";
-//--------------------------SFX Imports---------------------------------
+//--------------------------IMG & SFX Imports---------------------------------
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
 import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
 import clock from "../assets/clock.png"
 import gollem from "../assets/Gollum.png"
+import loadingBlade from "../assets/loadingBlade.gif"
 //------------------------------Code-----------------------------------
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 export default function Quiz(props) {
@@ -41,12 +42,12 @@ export default function Quiz(props) {
 
 
 //----------------------useStates and useContexts----------------------
-    const [quote, setQuote] = useState()
-    const [character, setCharacter] = useState();
     const [score, setScore] = useState(0);
     const [showFact, setShowFact] = useState(true);
     const [counter, setCounter] = useState(30);
     const [characters, setCharacters] = useState(null)
+    const [quotes, setQuotes] = useState(null)
+    const [movies, setMovies] = useState(null)
 
     const nameAvatarValue = useContext(nameAvatarContext);
     const soundToggleMute = useContext(soundContext)
@@ -57,52 +58,63 @@ export default function Quiz(props) {
     console.log("Wat is de state: ", characters)
 
     useEffect(() => {
-        console.log("ON MOUNT: ")
+
         const headers = {
             'Accept': 'application/json',
             'Authorization': `Bearer ${apiKey}`
         }
 
         async function fetchData() {
-            // const responseMovie = await axios.get("https://the-one-api.dev/v2/movie", {
-            //     headers: headers
-            // });
-            // console.log(responseMovie);
-
-            console.log("ASYNC Function: ")
-            const responseCharacterGollem = await axios.get("https://the-one-api.dev/v2/character/", {
+            const responseCharacter = await axios.get("https://the-one-api.dev/v2/character/", {
                 headers: headers
             });
-            console.log("Dit word in de state gezet: ", responseCharacterGollem.data.docs);
-            setCharacters(responseCharacterGollem.data.docs);
+            setCharacters(responseCharacter.data.docs);
 
+            const responseQuote = await axios.get("https://the-one-api.dev/v2/quote/", {
+                headers: headers
+                });
+            setQuotes(responseQuote.data.docs)
 
-
+            const responseMovie = await axios.get("https://the-one-api.dev/v2/movie/", {
+                headers: headers
+            });
+            setMovies(responseMovie.data.docs)
         }
-        console.log("Fetchdata: ")
+
+
         fetchData();
-
     }, [])
-    // const Gollum = characters && characters.find(function (character) {
-    //     if (character._id === "5cd99d4bde30eff6ebccfe9e")
-    //         console.log("Find functie getriggered", Gollum)
-    //     return true;
-    // });
-    // function isGollum (character) {
-    //     return character._id === "5cd99d4bde30eff6ebccfe9e"
-    // }
-    // const Gollum =  characters ? (characters.find(isGollum)) : (<h1>Loading...</h1>)
-    // console.log("Rendered Find Function", characters.find(isGollum));
 
+//---------------------------API Data Filtering--------------------------
    const Gollum = characters && characters.find((character) => {
-        console.log(character)
        if (character._id === "5cd99d4bde30eff6ebccfe9e")
            return true
 
+    });
+
+    const quoteMrFrodo = quotes && quotes.find((quote) => {
+        if (quote._id === "5cd96e05de30eff6ebcce88b")
+            return true
+    });
+
+    const movieMrFrodo = movies && movies.find((movie) => {
+        if (movie._id === "5cd95395de30eff6ebccde5d")
+            return true
+    });
+
+    const characterMrFrodo = characters && characters.find((character) => {
+        if (character._id === "5cd99d4bde30eff6ebccfd0d")
+            return true
+    });
+
+    const moviesDuration = movies && movies.map((movie) => {
+        return movie.runtimeInMinutes
+
     })
-
-
-
+    let sum = movies && moviesDuration.reduce(function(a, b){
+        return a + b;
+    }, 0)
+console.log(sum)
 
 //----------------------SoundEffect Variables----------------------
     const sound2 = new Howl({
@@ -118,29 +130,50 @@ export default function Quiz(props) {
 
     })
 
-//----------------------Questions and facts arrays------------------
+//----------------------Questions and facts arrays-----------------------------------------
     const facts = [
-        {
-            fact: <div className="fact1">
+//------------------------------Fact1------------------------------------------------------
+        {fact:
+                <div className="fact1">
                 <h2 className="fact-thirdItem">Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor,
                     on of the three early hobbit types.</h2>
                 <img id="Gollum-img" className="fact-firstItem" src={gollem} alt="Image Not Available"/>
                 <div className="fact-secondItem" style={{fontSize: 30}}>
                 </div>
-                <div>{characters ? (<> {console.log("characters = true in facts")}
-                    <div>Name: <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
-                    <div>Date of Birth: <span style={{fontWeight: "bold"}}>{Gollum.birth}</span></div>
-                    <div>Date of Death: <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
-                    <div>Race: <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
-                </>) : (console.log("characters = false in Facts"), <h1>Loading...</h1>)}</div>
+                <div>{characters ? (<>
+                    <div>Name:
+                        <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
+                    <div>Date of Birth:
+                        <span style={{fontWeight: "bold"}}>{Gollum.birth}</span></div>
+                    <div>Date of Death:
+                        <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
+                    <div>Race:
+                        <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
+                </>) : (
+                    <h1>Loading...</h1>)}</div>
             </div>
         },
-        {fact: "Fact2"},
-        {fact: "Fact3"},
-        {fact: "Fact4"},
+//-----------------------------Fact2----------------------------------------------------
+        {fact: <div>
+                <h2>Upon Sauron's defeat, Aragorn was crowned as king Elessar</h2>
+            </div>},
+//-----------------------------Fact3-----------------------------------------------------
+        {fact: <div className="fact2">
+                <>
+                    {quotes && <h2>"{quoteMrFrodo.dialog}"</h2>}
+                    {characters && <cite>- {characterMrFrodo.name}</cite>}
+                    {movies && <h3>Movie: {movieMrFrodo.name}</h3>}
+                </>
+            </div>},
+//-----------------------------Fact4-----------------------------------------------------
+        {fact: <div>
+                <h2>To watch all of the 3 extended editionsof TLOTR, <br/> you would have to spend 11 hours and 21 minutes to finish, almost half a day</h2>
+            </div>},
     ]
 
+
     const questions = [
+//----------------------------Question 1------------------------------------------------------
         {
             questionText:
                 <div className="">
@@ -155,44 +188,46 @@ export default function Quiz(props) {
                     </motion.div>
                 </div>,
             answerOptions: [
-                {answerText: "FCKING HELP", isCorrect: true},
+                {answerText: "FCKING HELP", isCorrect: false},
                 {answerText: "IM DYING", isCorrect: false},
-                {answerText: "GOLEM", isCorrect: false},
+                {answerText: "GOLEM", isCorrect: true},
                 {answerText: "FILTHY HOBBITS", isCorrect: false},
             ]
         },
+//----------------------------Question 2------------------------------------------------------
         {
             questionText: <div>
-                <h2>This is question #2</h2>
+                <h2>In the Battle of the Black Gate, what does aragon say when they charge at the orcs?</h2>
             </div>,
             answerOptions: [
-                {answerText: "answer #1", isCorrect: false},
-                {answerText: "answer #2", isCorrect: true},
-                {answerText: "answer #3", isCorrect: false},
-                {answerText: "answer #4", isCorrect: false},
+                {answerText: "For Asgard", isCorrect: false},
+                {answerText: "For Frodo", isCorrect: true},
+                {answerText: "For your mother", isCorrect: false},
+                {answerText: "For myself", isCorrect: false},
             ]
         },
+//----------------------------Question 3------------------------------------------------------
         {
             questionText: <div>
-                <h2>This is question #3</h2>
+                <h2>What is the mountain called where the ring is to be destroyed</h2>
             </div>,
             answerOptions: [
-                {answerText: "Answer 1", isCorrect: false},
-                {answerText: "Answer 2", isCorrect: false},
-                {answerText: "Answer 3", isCorrect: true},
-                {answerText: "Answer 4", isCorrect: false},
+                {answerText: "Mount Saron", isCorrect: false},
+                {answerText: "Mount Mordor", isCorrect: false},
+                {answerText: "Mount Orcs", isCorrect: false},
+                {answerText: "Mount Doom", isCorrect: true},
             ]
         },
+//----------------------------Question 4------------------------------------------------------
         {
             questionText: <div>
-                <blockquote>{quote}</blockquote>
-                <cite>- {character}</cite>
+                <h2>How long are all of TLOTR and The Hobbit movies combined?</h2>
             </div>,
             answerOptions: [
-                {answerText: "Answer 1", isCorrect: false},
-                {answerText: "Answer 2", isCorrect: false},
-                {answerText: "Answer 3", isCorrect: false},
-                {answerText: "Answer 4", isCorrect: true},
+                {answerText: "1 Min", isCorrect: false},
+                {answerText: "3600 Min", isCorrect: false},
+                {answerText: "1865 Min", isCorrect: false},
+                {answerText: sum + " Min", isCorrect: true},
             ]
         },
     ]
@@ -266,8 +301,8 @@ export default function Quiz(props) {
                             <h1 className="timerIcon-Facts"><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
 
                             {characters ? (<div
-                                className="question-text">{console.log("Rendered Return Facts Elements: ")}{facts[currentQuestion].fact}</div>) : (
-                                <h1>loading</h1>)}
+                                className="question-text">{facts[currentQuestion].fact}</div>) : (
+                                <h1><img id="loadingIcon" src={loadingBlade}  alt=""/></h1>)}
 
                             <button className="showFactQuestionButton" onClick={() => setShowFact(false)}>Show
                                 Question
