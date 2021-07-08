@@ -6,7 +6,6 @@ import {
 import {motion} from 'framer-motion'
 import App, {nameAvatarContext} from '../App'
 import {soundContext} from "../App";
-import StartMenu from "./StartMenu";
 //--------------------------IMG & SFX Imports---------------------------------
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
@@ -16,6 +15,7 @@ import gollem from "../assets/Gollum.png"
 import loadingBlade from "../assets/loadingBlade.gif"
 //------------------------------Code-----------------------------------
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
+
 export default function Quiz(props) {
 
     //--------------------ten zijde gelaten code-----------------------
@@ -114,7 +114,6 @@ export default function Quiz(props) {
     let sum = movies && moviesDuration.reduce(function(a, b){
         return a + b;
     }, 0)
-console.log(sum)
 
 //----------------------SoundEffect Variables----------------------
     const sound2 = new Howl({
@@ -238,6 +237,8 @@ console.log(sum)
     const [showScore, setShowScore] = useState(false);
 
 
+
+
     const handleAnswerButtonClick = (isCorrect) => {
         if (isCorrect === true) {
             soundToggleMute.sound && sound1.play()
@@ -288,6 +289,13 @@ console.log(sum)
 //         return () => clearInterval(timer) ;
 //     }, [counter]);
 
+//----------------------Module exports-----------------------------
+    function add(num1, num2) {
+        return num1 + num2
+    }
+    module.exports = {
+        add: add,
+    }
 //----------------------Display-------------------------------------
     return (
         <>
@@ -370,3 +378,4 @@ console.log(sum)
 
     )
 }
+
