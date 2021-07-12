@@ -40,6 +40,9 @@ body {
 .startMenuButtonlayout {
     display: flex;
     padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -256,6 +259,12 @@ body {
 
 
 
+.highscoreListStyling {
+
+}
+
+
+
 
 .InputPageNavButtons {
     display: flex;
@@ -279,15 +288,6 @@ body {
     align-items: center;
     padding: 20px;
 }
-
-
-
-
-
-
-
-
-
 
 
 

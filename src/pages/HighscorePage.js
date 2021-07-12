@@ -1,26 +1,20 @@
-import React, { useContext } from 'react'
+import React, {useContext} from 'react'
 import {
     Link,
 } from "react-router-dom";
 import {Howl} from "howler";
 import swordDraw from "../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion";
-import {nameAvatarContext, soundContext} from "../App";
-
-
+import { soundContext } from "../App";
 
 export default function Highscore() {
-    const nameAvatarValue = useContext(nameAvatarContext);
     const soundToggleMute = useContext(soundContext);
-
     const sound2 = new Howl({
         src: [swordDraw],
         autoplay: false,
         volume: 0.2,
 
     })
-
-    localStorage.setItem("HighscoreName", nameAvatarValue.name)
 
     return (
         <>
@@ -30,9 +24,17 @@ export default function Highscore() {
                 exit={{scaleY: 0}}
             >
                 <div className="StartMenuButtons">
-                    <h1>*Under development*</h1>
-                    <h1>{nameAvatarValue.name}: score</h1>
-                    <p>Dit is de Highscore page</p>
+                    <h1>Highscores</h1>
+                    <div className="highscoreListStyling">
+                        <h3>{localStorage.getItem("highscoreName0")}  {localStorage.getItem("highscoreScore0")}</h3>
+                        <h3>{localStorage.getItem("highscoreName1")}  {localStorage.getItem("highscoreScore1")}</h3>
+                        <h3>{localStorage.getItem("highscoreName2")}  {localStorage.getItem("highscoreScore2")}</h3>
+                        <h3>{localStorage.getItem("highscoreName3")}  {localStorage.getItem("highscoreScore3")}</h3>
+                        <h3>{localStorage.getItem("highscoreName4")}  {localStorage.getItem("highscoreScore4")}</h3>
+                        <h3>{localStorage.getItem("highscoreName5")}  {localStorage.getItem("highscoreScore5")}</h3>
+                        <h3>{localStorage.getItem("highscoreName6")}  {localStorage.getItem("highscoreScore6")}</h3>
+                        <h3>{localStorage.getItem("highscoreName7")}  {localStorage.getItem("highscoreScore7")}</h3>
+                    </div>
 
                     <Link to="/">
                         <button className="mainButtonStyling" onClick={() => {

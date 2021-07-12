@@ -11,11 +11,7 @@ import Inputpage from "./pages/InputPage";
 import OptionsPage from "./pages/OptionsPage";
 import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
-import Firebase from "../src/firebaseTest"
-
 import soundON from "./assets/soundON.png";
-import soundOFF from "./assets/soundOFF.png";
-
 
 export const nameAvatarContext = createContext();
 export const soundContext = createContext();
@@ -26,7 +22,9 @@ export default function App() {
     const [name, setName] = useState("")
     const [avatar, setAvatar] = useState("")
     const [sound, setSound] = useState(true)
+    const [score, setScore] = useState(0)
     const [soundIcon, setSoundIcon] = useState(soundON)
+    const [saveEdit, setSaveEdit] = useState(0)
 
 
     return (
@@ -34,7 +32,7 @@ export default function App() {
         <div className="Root">
             <div className="startMenuDiv">
                 <Router>
-                    <globalStateContext.Provider value={{}}>
+                    <globalStateContext.Provider value={{score, setScore, saveEdit, setSaveEdit}}>
                         <soundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
                             <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
                                 <AnimatePresence exitBeforeEnter>
@@ -59,9 +57,7 @@ export default function App() {
                                             <OptionsPage/>
                                         </Route>
 
-                                        <Route exact path="/Firebase">
-                                            <Firebase/>
-                                        </Route>
+
                                     </Switch>
                                 </AnimatePresence>
                             </nameAvatarContext.Provider>

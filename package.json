@@ -21,8 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx jest",
-    "test:watch": "npx jest --watch",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,9 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "jest": "^27.0.6"
-  },
+  "devDependencies": {},
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "repository": {
@@ -57,5 +54,5 @@
   "bugs": {
     "url": "https://github.com/SnelleJaapie/Lord-Of-The-Rings-Trivia-Eindopdracht/issues"
   },
-  "homepage": "https://github.com/SnelleJaapie/Lord-Of-The-Rings-Trivia-Eindopdracht#readme"
+  "homepage": "/"
 }

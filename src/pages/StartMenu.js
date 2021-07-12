@@ -4,20 +4,18 @@ import {
     NavLink,
 } from "react-router-dom";
 import {Howl} from "howler";
-import swordSFX from "../audioclips/SwordPullOut.mp3"
 import {motion} from 'framer-motion'
 import {soundContext} from "../App";
+import swordSFX from "../audioclips/SwordPullOut.mp3"
+import lotr_Logo from "../assets/lotr_Logo.png"
 
 export default function StartMenu() {
-
+    const soundToggleMute = useContext(soundContext)
     const sound1 = new Howl({
         src: [swordSFX],
         autoplay: false,
         volume: 0.2,
-
     })
-
-    const soundToggleMute = useContext(soundContext)
 
     return (
         <>
@@ -28,6 +26,9 @@ export default function StartMenu() {
             >
                 <div className="StartMenuButtons">
                     <div className="startMenuButtonlayout">
+                        <div>
+                            <img src={lotr_Logo} alt=""/>
+                        </div>
                         <NavLink to="/InputPage">
                             <motion.div whileHover={{scale: 1.1}}>
                                 <button className="mainButtonStyling" onClick={() => {

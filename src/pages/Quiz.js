@@ -4,8 +4,8 @@ import {
     NavLink
 } from "react-router-dom";
 import {motion} from 'framer-motion'
-import App, {nameAvatarContext} from '../App'
-import {soundContext} from "../App";
+import {soundContext, nameAvatarContext, globalStateContext} from '../App'
+
 //--------------------------IMG & SFX Imports---------------------------------
 import {Howl} from "howler";
 import swordSFX from "../audioclips/SwordPullOut.mp3";
@@ -51,6 +51,7 @@ export default function Quiz(props) {
 
     const nameAvatarValue = useContext(nameAvatarContext);
     const soundToggleMute = useContext(soundContext)
+    const globalState = useContext(globalStateContext)
 
 
 //----------------------useEffect API Mounting-------------------------
@@ -166,7 +167,7 @@ export default function Quiz(props) {
             </div>},
 //-----------------------------Fact4-----------------------------------------------------
         {fact: <div>
-                <h2>To watch all of the 3 extended editionsof TLOTR, <br/> you would have to spend 11 hours and 21 minutes to finish, almost half a day</h2>
+                <h2>To watch all of the 3 extended editions TLOTR, <br/> you would have to spend 11 hours and 21 minutes to finish, almost half a day</h2>
             </div>},
     ]
 
@@ -187,9 +188,9 @@ export default function Quiz(props) {
                     </motion.div>
                 </div>,
             answerOptions: [
-                {answerText: "FCKING HELP", isCorrect: false},
+                {answerText: "OMG HELP", isCorrect: false},
                 {answerText: "IM DYING", isCorrect: false},
-                {answerText: "GOLEM", isCorrect: true},
+                {answerText: "GOLLUM", isCorrect: true},
                 {answerText: "FILTHY HOBBITS", isCorrect: false},
             ]
         },
@@ -237,8 +238,6 @@ export default function Quiz(props) {
     const [showScore, setShowScore] = useState(false);
 
 
-
-
     const handleAnswerButtonClick = (isCorrect) => {
         if (isCorrect === true) {
             soundToggleMute.sound && sound1.play()
@@ -248,7 +247,7 @@ export default function Quiz(props) {
 
 
         if (isCorrect === true) {
-            setScore(score + 10);
+            globalState.setScore(globalState.score + 10);
         }
 
         const nextQuestion = currentQuestion + 1;
@@ -267,35 +266,42 @@ export default function Quiz(props) {
         }
 
     }
-//----------------------Timer-----------------------------------
-//     React.useEffect(() => {
-//         const timer =
-//             counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-//             if (counter === 0) {
-//                 const nextQuestion = currentQuestion + 1;
-//                 if (nextQuestion < questions.length) {
-//                     setCurrentQuestion(nextQuestion);
-//                     setCounter(30)
-//                 } else {
-//                     setShowScore(true);
-//                 }
-//                 setCurrentQuestion(nextQuestion);
-//                 if (nextQuestion < facts.length) {
-//                     setShowFact(true)
-//                 } else {
-//                     setShowFact(false)
-//                 }
-//             }
-//         return () => clearInterval(timer) ;
-//     }, [counter]);
+    //-----------------Saving Data------------------------------
+    function saveData() {
+        localStorage.setItem(`highscoreName${globalState.saveEdit}`, nameAvatarValue.name)
+        localStorage.setItem(`highscoreScore${globalState.saveEdit}`, globalState.score)
 
-//----------------------Module exports-----------------------------
-    function add(num1, num2) {
-        return num1 + num2
+        globalState.setSaveEdit(globalState.saveEdit + 1)
+
+        if (globalState.saveEdit > 10) {
+            globalState.setSaveEdit(0)
+        }
+
+        globalState.setScore(0)
     }
-    module.exports = {
-        add: add,
-    }
+
+//----------------------Timer-----------------------------------
+    React.useEffect(() => {
+        const timer =
+            counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+            if (counter === 0) {
+                const nextQuestion = currentQuestion + 1;
+                if (nextQuestion < questions.length) {
+                    setCurrentQuestion(nextQuestion);
+                    setCounter(30)
+                } else {
+                    setShowScore(true);
+                }
+                setCurrentQuestion(nextQuestion);
+                if (nextQuestion < facts.length) {
+                    setShowFact(true)
+                } else {
+                    setShowFact(false)
+                }
+            }
+        return () => clearInterval(timer) ;
+    }, [counter]);
+
 //----------------------Display-------------------------------------
     return (
         <>
@@ -321,10 +327,10 @@ export default function Quiz(props) {
                             {showScore ? (
                                 <>
                                     <h1>{nameAvatarValue.name}{nameAvatarValue.avatar}</h1>
-                                    <p id='scoreEnding' className="score-section">You scored {score} out
+                                    <p id='scoreEnding' className="score-section">You scored {globalState.score} out
                                         of {questions.length * 10} points!</p>
                                     <NavLink to="/">
-                                        <button className="mainButtonStyling">back</button>
+                                        <button className="mainButtonStyling" onClick={saveData}>back</button>
                                     </NavLink>
                                 </>
 
@@ -340,12 +346,8 @@ export default function Quiz(props) {
                                             <h1><img id="timerIcon" src={clock} alt=""/> {counter}</h1>
                                         </div>
 
-                                        <div id="livesPosition">
-                                            <h1 id="livesStyling">Lives: N.A. </h1>
-                                        </div>
-
                                         <div id="scorePosition">
-                                            <h1 id="scoreStyling">Score: {score}</h1>
+                                            <h1 id="scoreStyling">Score: {globalState.score}</h1>
                                         </div>
                                     </div>
 
@@ -354,6 +356,7 @@ export default function Quiz(props) {
                                         <span
                                             style={{fontSize: 35}}>Question {currentQuestion + 1}/{questions.length}</span>
                                     </div>
+
                                     <div className="">{questions[currentQuestion].questionText}</div>
 
                                     <div id="showFactQuestionPosition">
@@ -372,7 +375,6 @@ export default function Quiz(props) {
                         </div>
                     )}
                 </div>
-
             </motion.div>
         </>
 
