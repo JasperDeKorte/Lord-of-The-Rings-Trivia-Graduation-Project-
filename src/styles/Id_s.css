@@ -1,0 +1,63 @@
+#LOTRlogo {
+    width: 200px;
+    height: 200px;
+}
+
+#Gollum-img {
+    width: 200px;
+    height: 300px;
+}
+
+#soundIcon {
+    width: 50px;
+    height: 50px;
+}
+#timerIcon {
+    width: 30px;
+    height: 30px;
+}
+#loadingIcon {
+    width: 300px;
+    height: 300px;
+}
+
+#scoreEnding {
+    font-size: 30px;
+    border-style: dotted;
+    padding: 20px;
+}
+
+#scoreStyling {
+    display: inline;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#livesStyling {
+    display: inline;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+#playerNamePosition {
+    position: absolute;
+    top: 0px;
+    left: 100px;
+}
+
+#timerIconPosition {
+    position: absolute;
+    top: 0px;
+}
+
+#livesPosition {
+    position: absolute;
+    left: 100px;
+    top: 70px;
+}
+
+#scorePosition {
+    position: absolute;
+    right: 100px;
+    top: 25px;
+}

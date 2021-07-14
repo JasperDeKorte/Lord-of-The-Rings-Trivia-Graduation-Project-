@@ -3,16 +3,15 @@ import {
     Link,
     NavLink,
 } from "react-router-dom";
-import {motion} from 'framer-motion'
-import {Howl} from "howler";
+import { motion } from 'framer-motion'
+import { Howl } from "howler";
 import swordDraw from "../audioclips/swordDraw.mp3";
 import swordSFX from "../audioclips/SwordPullOut.mp3"
-import {nameAvatarContext, soundContext, globalStateContext} from "../App";
+import { NameAvatarContext, SoundContext } from "../App";
 
 export default function InputPage(props) {
-    const nameAvatarValue = useContext(nameAvatarContext)
-    const soundToggleMute = useContext(soundContext)
-    const globalStateCoContext = useContext(globalStateContext)
+    const nameAvatarValue = useContext(NameAvatarContext)
+    const soundToggleMute = useContext(SoundContext)
 
     const sound1 = new Howl({
         src: [swordSFX],
@@ -43,7 +42,6 @@ export default function InputPage(props) {
                            onChange={(event) => nameAvatarValue.setName(event.target.value)}/>
                 </div>
 
-
                 <div className="InputPageSelectInput">
                     <label id="selectYourAvatarLabel" className="generalTextStyling">Select Your Avatar</label>
                         <select className="mainInputStyling" name="avaterMenu" value={nameAvatarValue.avatar}
@@ -60,7 +58,6 @@ export default function InputPage(props) {
                             <option id={"emoji-Empty"}></option>
                         </select>
                 </div>
-
 
                 <div className="InputPageNavButtons">
                     <Link to="/">

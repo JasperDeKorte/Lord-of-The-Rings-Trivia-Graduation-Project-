@@ -4,7 +4,7 @@ import {
     NavLink
 } from "react-router-dom";
 import {motion} from 'framer-motion'
-import {soundContext, nameAvatarContext, globalStateContext} from '../App'
+import {SoundContext, NameAvatarContext, GlobalStateContext} from '../App'
 
 //--------------------------IMG & SFX Imports---------------------------------
 import {Howl} from "howler";
@@ -13,6 +13,8 @@ import fail from "../audioclips/awh-disappointed-crowd-sound-effect.mp3"
 import clock from "../assets/clock.png"
 import gollem from "../assets/Gollum.png"
 import loadingBlade from "../assets/loadingBlade.gif"
+import QuizQuestions from "../components/QuizQuestions";
+import QuizFacts from "../components/QuizFacts";
 //------------------------------Code-----------------------------------
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
@@ -49,15 +51,12 @@ export default function Quiz(props) {
     const [quotes, setQuotes] = useState(null)
     const [movies, setMovies] = useState(null)
 
-    const nameAvatarValue = useContext(nameAvatarContext);
-    const soundToggleMute = useContext(soundContext)
-    const globalState = useContext(globalStateContext)
+    const nameAvatarValue = useContext(NameAvatarContext);
+    const soundToggleMute = useContext(SoundContext)
+    const globalState = useContext(GlobalStateContext)
 
 
 //----------------------useEffect API Mounting-------------------------
-
-    console.log("Wat is de state: ", characters)
-
     useEffect(() => {
 
         const headers = {
@@ -135,11 +134,12 @@ export default function Quiz(props) {
 //------------------------------Fact1------------------------------------------------------
         {fact:
                 <div className="fact1">
-                <h2 className="fact-thirdItem">Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor,
-                    on of the three early hobbit types.</h2>
+                <QuizFacts
+                    factText="Gollem, originally knows as Sméagol (or Trahald), was at first a Stoor,
+                    on of the three early hobbit types."
+                />
                 <img id="Gollum-img" className="fact-firstItem" src={gollem} alt="Image Not Available"/>
-                <div className="fact-secondItem" style={{fontSize: 30}}>
-                </div>
+                <div className="fact-secondItem" style={{fontSize: 30}}></div>
                 <div>{characters ? (<>
                     <div>Name:
                         <span style={{fontWeight: "bold"}}>{Gollum.name}</span></div>
@@ -149,13 +149,13 @@ export default function Quiz(props) {
                         <span style={{fontWeight: "bold"}}>{Gollum.death}</span></div>
                     <div>Race:
                         <span style={{fontWeight: "bold"}}>{Gollum.race}</span></div>
-                </>) : (
+                </> ) : (
                     <h1>Loading...</h1>)}</div>
             </div>
         },
 //-----------------------------Fact2----------------------------------------------------
         {fact: <div>
-                <h2>Upon Sauron's defeat, Aragorn was crowned as king Elessar</h2>
+                <QuizFacts factText="Upon Sauron's defeat, Aragorn was crowned as king Elessar"/>
             </div>},
 //-----------------------------Fact3-----------------------------------------------------
         {fact: <div className="fact2">
@@ -176,17 +176,9 @@ export default function Quiz(props) {
 //----------------------------Question 1------------------------------------------------------
         {
             questionText:
-                <div className="">
-                    <motion.div
-                        initial={{scaleY: 0}}
-                        animate={{scaleY: 1}}
-                        exit={{scaleY: 0}}
-                    >
-                        <h2>In LOTR, what does 'Gollum' say when he freaks out again?</h2>
-                        <div style={{padding: 20}}>
-                        </div>
-                    </motion.div>
-                </div>,
+                <QuizQuestions
+                    questionText="In TLOTR, what does Gollum say when he freaks out again?"
+                />,
             answerOptions: [
                 {answerText: "OMG HELP", isCorrect: false},
                 {answerText: "IM DYING", isCorrect: false},
@@ -196,9 +188,9 @@ export default function Quiz(props) {
         },
 //----------------------------Question 2------------------------------------------------------
         {
-            questionText: <div>
-                <h2>In the Battle of the Black Gate, what does aragon say when they charge at the orcs?</h2>
-            </div>,
+            questionText: <QuizQuestions
+                questionText="In the Battle of the Black Gate, what does aragon say when they charge at the orcs?"
+            />,
             answerOptions: [
                 {answerText: "For Asgard", isCorrect: false},
                 {answerText: "For Frodo", isCorrect: true},
@@ -208,9 +200,9 @@ export default function Quiz(props) {
         },
 //----------------------------Question 3------------------------------------------------------
         {
-            questionText: <div>
-                <h2>What is the mountain called where the ring is to be destroyed</h2>
-            </div>,
+            questionText: <QuizQuestions
+                questionText="What is the mountain called where the ring is to be destroyed?"
+            />,
             answerOptions: [
                 {answerText: "Mount Saron", isCorrect: false},
                 {answerText: "Mount Mordor", isCorrect: false},
@@ -220,9 +212,9 @@ export default function Quiz(props) {
         },
 //----------------------------Question 4------------------------------------------------------
         {
-            questionText: <div>
-                <h2>How long are all of TLOTR and The Hobbit movies combined?</h2>
-            </div>,
+            questionText: <QuizQuestions
+                questionText="How long are all of TLOTR and The Hobbit movies combined?"
+            />,
             answerOptions: [
                 {answerText: "1 Min", isCorrect: false},
                 {answerText: "3600 Min", isCorrect: false},
@@ -276,31 +268,30 @@ export default function Quiz(props) {
         if (globalState.saveEdit > 10) {
             globalState.setSaveEdit(0)
         }
-
         globalState.setScore(0)
     }
 
 //----------------------Timer-----------------------------------
-    React.useEffect(() => {
-        const timer =
-            counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-            if (counter === 0) {
-                const nextQuestion = currentQuestion + 1;
-                if (nextQuestion < questions.length) {
-                    setCurrentQuestion(nextQuestion);
-                    setCounter(30)
-                } else {
-                    setShowScore(true);
-                }
-                setCurrentQuestion(nextQuestion);
-                if (nextQuestion < facts.length) {
-                    setShowFact(true)
-                } else {
-                    setShowFact(false)
-                }
-            }
-        return () => clearInterval(timer) ;
-    }, [counter]);
+//     React.useEffect(() => {
+//         const timer =
+//             counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+//             if (counter === 0) {
+//                 const nextQuestion = currentQuestion + 1;
+//                 if (nextQuestion < questions.length) {
+//                     setCurrentQuestion(nextQuestion);
+//                     setCounter(30)
+//                 } else {
+//                     setShowScore(true);
+//                 }
+//                 setCurrentQuestion(nextQuestion);
+//                 if (nextQuestion < facts.length) {
+//                     setShowFact(true)
+//                 } else {
+//                     setShowFact(false)
+//                 }
+//             }
+//         return () => clearInterval(timer) ;
+//     }, [counter]);
 
 //----------------------Display-------------------------------------
     return (

@@ -1,14 +1,14 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import {
     Link,
 } from "react-router-dom";
 import {Howl} from "howler";
 import swordDraw from "../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion";
-import { soundContext } from "../App";
+import { SoundContext } from "../App";
 
 export default function Highscore() {
-    const soundToggleMute = useContext(soundContext);
+    const soundToggleMute = useContext(SoundContext);
     const sound2 = new Howl({
         src: [swordDraw],
         autoplay: false,

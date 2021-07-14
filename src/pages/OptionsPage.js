@@ -1,16 +1,16 @@
-import React, {useContext} from 'react'
-import {Howl} from 'howler'
+import React, { useContext } from 'react'
+import { Howl } from 'howler'
 import {
     Link
 } from "react-router-dom";
 import swordDraw from "../audioclips/swordDraw.mp3";
-import {motion} from "framer-motion"
-import {soundContext} from "../App";
+import { motion } from "framer-motion"
+import { SoundContext } from "../App";
 import soundON from "../assets/soundON.png"
 import soundOFF from "../assets/soundOFF.png"
 
 export default function OptionsPage() {
-    const soundToggleMute = useContext(soundContext);
+    const soundToggleMute = useContext(SoundContext);
 
     const sound2 = new Howl({
         src: [swordDraw],

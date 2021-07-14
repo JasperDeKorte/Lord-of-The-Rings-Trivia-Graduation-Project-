@@ -13,9 +13,9 @@ import Quiz from "./pages/Quiz"
 import Highscore from "./pages/HighscorePage";
 import soundON from "./assets/soundON.png";
 
-export const nameAvatarContext = createContext();
-export const soundContext = createContext();
-export const globalStateContext = createContext();
+export const NameAvatarContext = createContext();
+export const SoundContext = createContext();
+export const GlobalStateContext = createContext();
 
 
 export default function App() {
@@ -32,9 +32,9 @@ export default function App() {
         <div className="Root">
             <div className="startMenuDiv">
                 <Router>
-                    <globalStateContext.Provider value={{score, setScore, saveEdit, setSaveEdit}}>
-                        <soundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
-                            <nameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
+                    <GlobalStateContext.Provider value={{score, setScore, saveEdit, setSaveEdit}}>
+                        <SoundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
+                            <NameAvatarContext.Provider value={{name, setName, avatar, setAvatar}}>
                                 <AnimatePresence exitBeforeEnter>
                                     <Switch>
                                         <Route exact path="/">
@@ -60,9 +60,9 @@ export default function App() {
 
                                     </Switch>
                                 </AnimatePresence>
-                            </nameAvatarContext.Provider>
-                        </soundContext.Provider>
-                    </globalStateContext.Provider>
+                            </NameAvatarContext.Provider>
+                        </SoundContext.Provider>
+                    </GlobalStateContext.Provider>
                 </Router>
             </div>
         </div>

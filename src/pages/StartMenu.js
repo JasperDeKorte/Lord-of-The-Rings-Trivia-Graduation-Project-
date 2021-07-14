@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import {
     Link,
     NavLink,
 } from "react-router-dom";
-import {Howl} from "howler";
-import {motion} from 'framer-motion'
-import {soundContext} from "../App";
+import { Howl } from "howler";
+import { motion } from 'framer-motion'
+import { SoundContext } from "../App";
 import swordSFX from "../audioclips/SwordPullOut.mp3"
 import lotr_Logo from "../assets/lotr_Logo.png"
 
 export default function StartMenu() {
-    const soundToggleMute = useContext(soundContext)
+    const soundToggleMute = useContext(SoundContext)
     const sound1 = new Howl({
         src: [swordSFX],
         autoplay: false,
