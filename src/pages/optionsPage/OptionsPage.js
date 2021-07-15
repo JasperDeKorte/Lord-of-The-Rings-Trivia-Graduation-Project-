@@ -1,28 +1,16 @@
 import React, { useContext } from 'react'
-import { Howl } from 'howler'
 import {
     Link
 } from "react-router-dom";
-import swordDraw from "../audioclips/swordDraw.mp3";
 import { motion } from "framer-motion"
-import { SoundContext } from "../App";
-import soundON from "../assets/soundON.png"
-import soundOFF from "../assets/soundOFF.png"
+import { SoundContext } from "../../App";
+import soundOFF from "../../assets/soundOFF.png";
+import soundON from "../../assets/soundON.png";
+import { sound2 } from "../../helpers/Sounds";
+import menuSword from "../../assets/menuSword.png";
 
 export default function OptionsPage() {
     const soundToggleMute = useContext(SoundContext);
-
-    const sound2 = new Howl({
-        src: [swordDraw],
-        autoplay: false,
-        volume: 0.2,
-    })
-
-    function soundToggleOff() {
-        soundToggleMute.setSound(false);
-        soundToggleMute.setSoundIcon(soundOFF);
-        console.log("Sound is set Off");
-    }
 
     function soundToggleOn() {
         soundToggleMute.setSound(true);
@@ -30,16 +18,22 @@ export default function OptionsPage() {
         sound2.play();
         console.log("Sound is set on")
     }
-
+    function soundToggleOff() {
+        soundToggleMute.setSound(false);
+        soundToggleMute.setSoundIcon(soundOFF);
+        console.log("Sound is set Off");
+    }
 
     return (
         <>
             <motion.div
                 initial={{scaleY: 0}}
                 animate={{scaleY: 1}}
-                exit={{scaleY: 0}}
-            >
-                <div className="mainLayoutStyling">
+                exit={{scaleY: 0}}>
+
+                <img id="menuSword1" src={menuSword} alt=""/>
+                <div className="optionsLayoutStyling">
+                    <h1 className="pageTitles">Options</h1>
                     <div className="startMenuButtonlayout">
                         <motion.div whileHover={{scale: 1.1}}>
                             <button className="mainButtonStyling" onClick={() => soundToggleOn()}>Turn sound on</button>
@@ -55,16 +49,7 @@ export default function OptionsPage() {
                             <button className="mainButtonStyling" onClick={() => soundToggleOff()}>Turn sound off</button>
                         </motion.div>
                     </div>
-
-                    {/*<motion.div whileHover={{scale: 1.1}}>*/}
-                    {/*    <button onClick={() => {*/}
-                    {/*        soundToggleMute.sound && sound2.play()*/}
-                    {/*    }}>Click me to test audio!*/}
-                    {/*    </button>*/}
-                    {/*</motion.div>*/}
-
                 </div>
-
 
                 <div className="OptionsPageButtons">
                     <Link to="/">
@@ -76,6 +61,7 @@ export default function OptionsPage() {
                         </motion.div>
                     </Link>
                 </div>
+                <img id="menuSword2" src={menuSword} alt=""/>
             </motion.div>
         </>
     )

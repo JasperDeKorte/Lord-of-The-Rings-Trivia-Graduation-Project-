@@ -1,0 +1,55 @@
+#LOTRlogo {
+    width: 200px;
+    height: 200px;
+}
+#menuSword1 {
+    width: 400px;
+    transform: rotate(180deg);
+    padding: 40px;
+}
+
+#menuSword2 {
+    width: 400px;
+    padding: 40px;
+}
+#triviaStartMenu {
+    font-size: 75px;
+    text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+    color: #FFFFFF;
+    border-style: solid;
+    border-radius: 100px;
+}
+
+.menuSwordsLogo{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.startMenuDiv {
+    display: flex;
+    width: 1500px; /*width: 576 for mobile*/
+    height: 960px;
+    border-style: solid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ded17c;
+}
+.StartMenuButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.startMenuButtonlayout {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

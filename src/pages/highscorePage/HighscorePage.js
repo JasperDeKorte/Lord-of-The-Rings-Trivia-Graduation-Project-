@@ -3,9 +3,10 @@ import {
     Link,
 } from "react-router-dom";
 import {Howl} from "howler";
-import swordDraw from "../audioclips/swordDraw.mp3";
+import swordDraw from "../../audioclips/swordDraw.mp3";
 import {motion} from "framer-motion";
-import { SoundContext } from "../App";
+import { SoundContext } from "../../App";
+import menuSword from "../../assets/menuSword.png";
 
 export default function Highscore() {
     const soundToggleMute = useContext(SoundContext);
@@ -23,6 +24,7 @@ export default function Highscore() {
                 animate={{scaleY: 1}}
                 exit={{scaleY: 0}}
             >
+                <img id="menuSword1" src={menuSword} alt=""/>
                 <div className="StartMenuButtons">
                     <h1>Highscores</h1>
                     <div className="highscoreListStyling">
@@ -43,6 +45,7 @@ export default function Highscore() {
                         </button>
                     </Link>
                 </div>
+                <img id="menuSword2" src={menuSword} alt=""/>
             </motion.div>
         </>
     )

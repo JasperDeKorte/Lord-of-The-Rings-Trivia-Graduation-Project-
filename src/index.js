@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import './styles/Id_s.css'
+import './components/Buttons.css'
+import './pages/highscorePage/HighscorePage.css'
+import './pages/inputPage/InputPage.css'
+import './pages/optionsPage/OptionsPage.css'
+import './pages/quiz/Quiz.css'
+import './pages/startMenu/StartMenu.css'
 import './fonts/fonts.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';

@@ -6,11 +6,11 @@ import {
 } from "react-router-dom";
 import {AnimatePresence} from 'framer-motion'
 
-import StartMenu from "./pages/StartMenu"
-import Inputpage from "./pages/InputPage";
-import OptionsPage from "./pages/OptionsPage";
-import Quiz from "./pages/Quiz"
-import Highscore from "./pages/HighscorePage";
+import StartMenu from "./pages/startMenu/StartMenu"
+import Inputpage from "./pages/inputPage/InputPage";
+import OptionsPage from "./pages/optionsPage/OptionsPage";
+import Quiz from "./pages/quiz/Quiz"
+import Highscore from "./pages/highscorePage/HighscorePage";
 import soundON from "./assets/soundON.png";
 
 export const NameAvatarContext = createContext();

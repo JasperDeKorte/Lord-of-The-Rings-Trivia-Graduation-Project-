@@ -4,25 +4,14 @@ import {
     NavLink,
 } from "react-router-dom";
 import { motion } from 'framer-motion'
-import { Howl } from "howler";
-import swordDraw from "../audioclips/swordDraw.mp3";
-import swordSFX from "../audioclips/SwordPullOut.mp3"
-import { NameAvatarContext, SoundContext } from "../App";
+import { NameAvatarContext, SoundContext } from "../../App";
+import { sound1, sound2 } from "../../helpers/Sounds";
+import menuSword from "../../assets/menuSword.png";
 
 export default function InputPage(props) {
     const nameAvatarValue = useContext(NameAvatarContext)
     const soundToggleMute = useContext(SoundContext)
 
-    const sound1 = new Howl({
-        src: [swordSFX],
-        autoplay: false,
-        volume: 0.2,
-    })
-    const sound2 = new Howl({
-        src: [swordDraw],
-        autoplay: false,
-        volume: 0.2,
-    })
 
     function playerSet() {
         soundToggleMute.sound && sound1.play()
@@ -34,6 +23,7 @@ export default function InputPage(props) {
             animate={{scaleY: 1}}
             exit={{scaleY: 0}}
         >
+            <img id="menuSword1" src={menuSword} alt=""/>
             <div className="">
                 <div className="InputPagePlayerInput">
                     <label className="generalTextStyling">Enter Your Playername</label>
@@ -79,6 +69,7 @@ export default function InputPage(props) {
                     </NavLink>
                 </div>
             </div>
+            <img id="menuSword2" src={menuSword} alt=""/>
         </motion.div>
     )
 }
