@@ -65,10 +65,9 @@ export default function StartMenu() {
                         <h1 id="triviaStartMenu">Trivia</h1>
                         <img id="menuSword2" src={menuSword} alt=""/>
                     </div>
-
-
                 </div>
             </motion.div>
+
         </>
     )
 }

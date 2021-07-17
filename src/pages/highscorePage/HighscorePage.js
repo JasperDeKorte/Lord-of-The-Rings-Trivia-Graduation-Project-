@@ -26,16 +26,16 @@ export default function Highscore() {
             >
                 <img id="menuSword1" src={menuSword} alt=""/>
                 <div className="StartMenuButtons">
-                    <h1>Highscores</h1>
+                    <h1 id="highscoreTitle">Highscores</h1>
                     <div className="highscoreListStyling">
-                        <h3>{localStorage.getItem("highscoreName0")}  {localStorage.getItem("highscoreScore0")}</h3>
-                        <h3>{localStorage.getItem("highscoreName1")}  {localStorage.getItem("highscoreScore1")}</h3>
-                        <h3>{localStorage.getItem("highscoreName2")}  {localStorage.getItem("highscoreScore2")}</h3>
-                        <h3>{localStorage.getItem("highscoreName3")}  {localStorage.getItem("highscoreScore3")}</h3>
-                        <h3>{localStorage.getItem("highscoreName4")}  {localStorage.getItem("highscoreScore4")}</h3>
-                        <h3>{localStorage.getItem("highscoreName5")}  {localStorage.getItem("highscoreScore5")}</h3>
-                        <h3>{localStorage.getItem("highscoreName6")}  {localStorage.getItem("highscoreScore6")}</h3>
-                        <h3>{localStorage.getItem("highscoreName7")}  {localStorage.getItem("highscoreScore7")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName0")}  {localStorage.getItem("highscoreScore0")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName1")}  {localStorage.getItem("highscoreScore1")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName2")}  {localStorage.getItem("highscoreScore2")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName3")}  {localStorage.getItem("highscoreScore3")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName4")}  {localStorage.getItem("highscoreScore4")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName5")}  {localStorage.getItem("highscoreScore5")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName6")}  {localStorage.getItem("highscoreScore6")}</h3>
+                        <h3 className="highscoreListItemStyling">{localStorage.getItem("highscoreName7")}  {localStorage.getItem("highscoreScore7")}</h3>
                     </div>
 
                     <Link to="/">

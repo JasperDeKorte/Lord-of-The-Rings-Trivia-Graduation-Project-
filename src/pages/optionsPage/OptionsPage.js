@@ -33,7 +33,8 @@ export default function OptionsPage() {
 
                 <img id="menuSword1" src={menuSword} alt=""/>
                 <div className="optionsLayoutStyling">
-                    <h1 className="pageTitles">Options</h1>
+                    <h1 id="OptionsTitle">Options</h1>
+
                     <div className="startMenuButtonlayout">
                         <motion.div whileHover={{scale: 1.1}}>
                             <button className="mainButtonStyling" onClick={() => soundToggleOn()}>Turn sound on</button>

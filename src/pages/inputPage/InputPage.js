@@ -8,14 +8,9 @@ import { NameAvatarContext, SoundContext } from "../../App";
 import { sound1, sound2 } from "../../helpers/Sounds";
 import menuSword from "../../assets/menuSword.png";
 
-export default function InputPage(props) {
+export default function InputPage() {
     const nameAvatarValue = useContext(NameAvatarContext)
     const soundToggleMute = useContext(SoundContext)
-
-
-    function playerSet() {
-        soundToggleMute.sound && sound1.play()
-    }
 
     return (
         <motion.div
@@ -61,9 +56,9 @@ export default function InputPage(props) {
 
                     <NavLink to="/Quiz">
                         <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={
-                                playerSet
-                            }>Playerset
+                            <button className="mainButtonStyling" onClick={() => {
+                                soundToggleMute.sound && sound1.play()
+                            }}>Playerset
                             </button>
                         </motion.div>
                     </NavLink>

@@ -17,18 +17,27 @@
     left: 0px;
 }
 #crown{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    left: 262px;
+    bottom: 5px;
     width: 150px;
 
 }
 #Gollum-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 80px;
+    left: 200px;
     width: 200px;
     height: 300px;
+
+}
+#Gollum-img2 {
+    position: absolute;
+    top: 80px;
+    right: 200px;
+    width: 200px;
+    height: 300px;
+    transform: scaleX(-1);
 
 }
 #timerIcon {
@@ -127,4 +136,10 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+}
+
+.questionTextAllignment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

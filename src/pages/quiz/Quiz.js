@@ -6,7 +6,7 @@ import {
 import {motion} from 'framer-motion'
 import {SoundContext, NameAvatarContext, GlobalStateContext} from '../../App'
 //--------------------------IMG & SFX Imports---------------------------------
-import {sound1, sound2, sound3} from "../../helpers/Sounds";
+import {sound1, sound3} from "../../helpers/Sounds";
 import crown from "../../assets/crown.png"
 import clock from "../../assets/clock.png"
 import gollum from "../../assets/Gollum.png"
@@ -17,7 +17,7 @@ import menuSword from "../../assets/menuSword.png";
 //------------------------------Code-----------------------------------
 const apiKey = 'PQhSLtNXHWFFaBqgDe0y'
 
-export default function Quiz(props) {
+export default function Quiz() {
 
 //----------------------useStates and useContexts----------------------
     const [showFact, setShowFact] = useState(true);
@@ -103,7 +103,8 @@ export default function Quiz(props) {
                             <QuizFacts
                                 factText="Gollum, originally knows as Sméagol (or Trahald), was at first a Stoor,
                             on of the three early hobbit types."
-                                bottomImage={<img id="Gollum-img" src={gollum} alt={null}/>}
+                                bottomImage={<img id="Gollum-img" src={gollum} alt=""/>}
+                                topImage={<img id="Gollum-img2" src={gollum} alt=""/>}
                                 nameText="Name: "
                                 dateOfBirthText="Date of birth: "
                                 dateOfDeathText="Date of death: "
@@ -250,26 +251,26 @@ export default function Quiz(props) {
     }
 
 //----------------------Timer-----------------------------------
-//     React.useEffect(() => {
-//         const timer =
-//             counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-//             if (counter === 0) {
-//                 const nextQuestion = currentQuestion + 1;
-//                 if (nextQuestion < questions.length) {
-//                     setCurrentQuestion(nextQuestion);
-//                     setCounter(30)
-//                 } else {
-//                     setShowScore(true);
-//                 }
-//                 setCurrentQuestion(nextQuestion);
-//                 if (nextQuestion < facts.length) {
-//                     setShowFact(true)
-//                 } else {
-//                     setShowFact(false)
-//                 }
-//             }
-//         return () => clearInterval(timer) ;
-//     }, [counter]);
+    React.useEffect(() => {
+        const timer =
+            counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+            if (counter === 0) {
+                const nextQuestion = currentQuestion + 1;
+                if (nextQuestion < questions.length) {
+                    setCurrentQuestion(nextQuestion);
+                    setCounter(30)
+                } else {
+                    setShowScore(true);
+                }
+                setCurrentQuestion(nextQuestion);
+                if (nextQuestion < facts.length) {
+                    setShowFact(true)
+                } else {
+                    setShowFact(false)
+                }
+            }
+        return () => clearInterval(timer) ;
+    }, [counter, currentQuestion, facts.length, questions.length]);
 
 //----------------------Display-------------------------------------
     return (

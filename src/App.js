@@ -31,6 +31,7 @@ export default function App() {
 
         <div className="Root">
             <div className="startMenuDiv">
+                {/*<img id="backgroundImage" src={background} alt=""/>*/}
                 <Router>
                     <GlobalStateContext.Provider value={{score, setScore, saveEdit, setSaveEdit}}>
                         <SoundContext.Provider value={{sound, setSound, soundIcon, setSoundIcon}}>
@@ -56,8 +57,6 @@ export default function App() {
                                         <Route path="/OptionsPage">
                                             <OptionsPage/>
                                         </Route>
-
-
                                     </Switch>
                                 </AnimatePresence>
                             </NameAvatarContext.Provider>

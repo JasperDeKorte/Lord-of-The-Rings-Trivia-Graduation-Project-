@@ -1,5 +1,4 @@
 import {motion} from "framer-motion";
-import menuSword from "../assets/menuSword.png";
 import React from "react";
 
 function QuizQuestions(props) {
@@ -12,7 +11,7 @@ function QuizQuestions(props) {
                 exit={{scaleY: 0}}
             >
 
-                <h2>{props.questionText}</h2>
+                <h1 className="questionTextAllignment">{props.questionText}</h1>
                 <div style={{padding: 20}}></div>
             </motion.div>
         </div>

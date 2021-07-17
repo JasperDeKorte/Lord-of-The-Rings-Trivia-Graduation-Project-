@@ -12,7 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     background-color: grey;
-    background-image: url("https://images.pathe-thuis.nl/16153_1920x1080.jpg");
+    background-image: url(/src/assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 3500px;
     image-rendering: high-quality;
     height: 1600px;
 }
@@ -32,6 +34,6 @@ body {
     font-family: 'MedievalSharp', cursive;
 }
 pageTitles{
-    font-size: 50px;
-    color: red;
+    color: #FF0000;
 }
+
