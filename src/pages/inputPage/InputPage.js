@@ -1,34 +1,21 @@
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import {
     Link,
     NavLink,
 } from "react-router-dom";
-import { motion} from 'framer-motion'
-import {Howl} from "howler";
-import swordDraw from "../audioclips/swordDraw.mp3";
-import swordSFX from "../audioclips/SwordPullOut.mp3"
-import {soundContext} from "../App";
-import {nameAvatarContext} from '../App'
-
-
+import { motion } from 'framer-motion'
+import { NameAvatarContext, SoundContext } from "../../App";
+import { sound1, sound2 } from "../../helpers/Sounds";
+import menuSword from "../../assets/menuSword.png";
 
 export default function InputPage(props) {
-    const nameAvatarValue = useContext(nameAvatarContext)
-    const soundToggleMute = useContext(soundContext)
+    const nameAvatarValue = useContext(NameAvatarContext)
+    const soundToggleMute = useContext(SoundContext)
 
-    const sound1 = new Howl({
-        src: [swordSFX],
-        autoplay: false,
-        volume: 0.2,
 
-    })
-    const sound2 = new Howl({
-        src: [swordDraw],
-        autoplay: false,
-        volume: 0.2,
-
-    })
-
+    function playerSet() {
+        soundToggleMute.sound && sound1.play()
+    }
 
     return (
         <motion.div
@@ -36,6 +23,7 @@ export default function InputPage(props) {
             animate={{scaleY: 1}}
             exit={{scaleY: 0}}
         >
+            <img id="menuSword1" src={menuSword} alt=""/>
             <div className="">
                 <div className="InputPagePlayerInput">
                     <label className="generalTextStyling">Enter Your Playername</label>
@@ -43,7 +31,6 @@ export default function InputPage(props) {
                            value={nameAvatarValue.name}
                            onChange={(event) => nameAvatarValue.setName(event.target.value)}/>
                 </div>
-
 
                 <div className="InputPageSelectInput">
                     <label id="selectYourAvatarLabel" className="generalTextStyling">Select Your Avatar</label>
@@ -62,7 +49,6 @@ export default function InputPage(props) {
                         </select>
                 </div>
 
-
                 <div className="InputPageNavButtons">
                     <Link to="/">
                         <motion.div whileHover={{scale: 1.1}}>
@@ -75,14 +61,15 @@ export default function InputPage(props) {
 
                     <NavLink to="/Quiz">
                         <motion.div whileHover={{scale: 1.1}}>
-                            <button className="mainButtonStyling" onClick={() => {
-                                soundToggleMute.sound && sound1.play()
-                            }}>Playerset
+                            <button className="mainButtonStyling" onClick={
+                                playerSet
+                            }>Playerset
                             </button>
                         </motion.div>
                     </NavLink>
                 </div>
             </div>
+            <img id="menuSword2" src={menuSword} alt=""/>
         </motion.div>
     )
 }

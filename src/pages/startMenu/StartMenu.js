@@ -1,24 +1,16 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import {
     Link,
     NavLink,
 } from "react-router-dom";
-import {Howl} from "howler";
-import swordSFX from "../audioclips/SwordPullOut.mp3"
-import {motion} from 'framer-motion'
-import {soundContext} from "../App";
+import { motion } from 'framer-motion'
+import { SoundContext } from "../../App";
+import lotr_Logo from "../../assets/lotr_Logo.png"
+import menuSword from "../../assets/menuSword.png"
+import {sound1} from "../../helpers/Sounds";
 
 export default function StartMenu() {
-
-    const sound1 = new Howl({
-        src: [swordSFX],
-        autoplay: false,
-        volume: 0.2,
-
-    })
-
-    const soundToggleMute = useContext(soundContext)
-
+    const soundToggleMute = useContext(SoundContext)
     return (
         <>
             <motion.div
@@ -28,13 +20,16 @@ export default function StartMenu() {
             >
                 <div className="StartMenuButtons">
                     <div className="startMenuButtonlayout">
+                        <div>
+                            <img src={lotr_Logo} alt=""/>
+                        </div>
                         <NavLink to="/InputPage">
                             <motion.div whileHover={{scale: 1.1}}>
-                                <button className="mainButtonStyling" onClick={() => {
+                                <button className="mainButtonStyling" onClick={() =>
                                     {
                                         soundToggleMute.sound && sound1.play()
                                     }
-                                }}>New Game
+                                }>New Game
                                 </button>
                             </motion.div>
                         </NavLink>
@@ -43,11 +38,11 @@ export default function StartMenu() {
                     <div className="startMenuButtonlayout">
                         <Link to="/OptionsPage">
                             <motion.div whileHover={{scale: 1.1}}>
-                                <button className="mainButtonStyling" onClick={() => {
+                                <button className="mainButtonStyling" onClick={() =>
                                     {
                                         soundToggleMute.sound && sound1.play()
                                     }
-                                }}>Options
+                                }>Options
                                 </button>
                             </motion.div>
                         </Link>
@@ -56,15 +51,22 @@ export default function StartMenu() {
                     <div className="startMenuButtonlayout">
                         <Link to="/Highscore">
                             <motion.div whileHover={{scale: 1.1}}>
-                                <button className="mainButtonStyling" onClick={() => {
+                                <button className="mainButtonStyling" onClick={() =>
                                     {
                                         soundToggleMute.sound && sound1.play()
                                     }
-                                }}>Highscore
+                                }>Highscore
                                 </button>
                             </motion.div>
                         </Link>
                     </div>
+                    <div className="menuSwordsLogo">
+                        <img id="menuSword1" src={menuSword} alt=""/>
+                        <h1 id="triviaStartMenu">Trivia</h1>
+                        <img id="menuSword2" src={menuSword} alt=""/>
+                    </div>
+
+
                 </div>
             </motion.div>
         </>
