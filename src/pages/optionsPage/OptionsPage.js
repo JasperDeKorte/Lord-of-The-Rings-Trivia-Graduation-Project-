@@ -16,12 +16,10 @@ export default function OptionsPage() {
         soundToggleMute.setSound(true);
         soundToggleMute.setSoundIcon(soundON);
         sound2.play();
-        console.log("Sound is set on")
     }
     function soundToggleOff() {
         soundToggleMute.setSound(false);
         soundToggleMute.setSoundIcon(soundOFF);
-        console.log("Sound is set Off");
     }
 
     return (

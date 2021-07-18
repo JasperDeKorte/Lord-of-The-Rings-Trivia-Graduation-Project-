@@ -172,7 +172,7 @@ export default function Quiz() {
             answerOptions: [
                 {answerText: "For Asgard", isCorrect: false},
                 {answerText: "For Frodo", isCorrect: true},
-                {answerText: "For your mother", isCorrect: false},
+                {answerText: "For Gimli", isCorrect: false},
                 {answerText: "For myself", isCorrect: false},
             ]
         },
