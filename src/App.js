@@ -56,8 +56,6 @@ export default function App() {
                                         <Route path="/OptionsPage">
                                             <OptionsPage/>
                                         </Route>
-
-
                                     </Switch>
                                 </AnimatePresence>
                             </NameAvatarContext.Provider>

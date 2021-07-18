@@ -4,6 +4,7 @@
     box-shadow: inset 0px 5px 0px 1px #f9eca0;
     background: linear-gradient(to bottom, #f0c911 5%, #f2ab1e 100%);
     background-color: #f0c911;
+    box-shadow: 0px 5px 25px 5px;
     border-radius: 17px;
     border: 2px solid #000000;
     display: inline-block;
