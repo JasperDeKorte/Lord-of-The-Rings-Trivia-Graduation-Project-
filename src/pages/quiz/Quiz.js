@@ -8,7 +8,7 @@ import {SoundContext, NameAvatarContext, GlobalStateContext} from '../../App'
 //--------------------------IMG & SFX Imports---------------------------------
 import {sound1, sound3} from "../../helpers/Sounds";
 import crown from "../../assets/crown.png"
-import clock from "../../assets/clock.png"
+import clock from "../../assets/Clock.png"
 import gollum from "../../assets/Gollum.png"
 import loadingBlade from "../../assets/loadingBlade.gif"
 import QuizQuestions from "../../components/QuizQuestions";
