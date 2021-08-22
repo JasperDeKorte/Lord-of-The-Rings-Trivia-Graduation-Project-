@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/css/main.8fa10901.chunk.css",
+    "main.js": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/main.c793af65.chunk.js",
+    "main.js.map": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/main.c793af65.chunk.js.map",
+    "runtime-main.js": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/runtime-main.ca368773.js",
+    "runtime-main.js.map": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/runtime-main.ca368773.js.map",
+    "static/js/2.e61c68bb.chunk.js": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/2.e61c68bb.chunk.js",
+    "static/js/2.e61c68bb.chunk.js.map": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/2.e61c68bb.chunk.js.map",
+    "static/js/3.3ba3110c.chunk.js": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/3.3ba3110c.chunk.js",
+    "static/js/3.3ba3110c.chunk.js.map": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/3.3ba3110c.chunk.js.map",
+    "index.html": "/Lord-of-The-Rings-Trivia-Graduation-Project-/index.html",
+    "static/css/main.8fa10901.chunk.css.map": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/css/main.8fa10901.chunk.css.map",
+    "static/js/2.e61c68bb.chunk.js.LICENSE.txt": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/js/2.e61c68bb.chunk.js.LICENSE.txt",
+    "static/media/Clock.23c046ad.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/Clock.23c046ad.png",
+    "static/media/Gollum.0cf882f1.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/Gollum.0cf882f1.png",
+    "static/media/SwordPullOut.248a3b33.mp3": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/SwordPullOut.248a3b33.mp3",
+    "static/media/awh-disappointed-crowd-sound-effect.2c7df37d.mp3": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/awh-disappointed-crowd-sound-effect.2c7df37d.mp3",
+    "static/media/StartMenu.css": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/background.1aa2a5b4.jpg",
+    "static/media/crown.48f8a493.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/crown.48f8a493.png",
+    "static/media/loadingBlade.1aceface.gif": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/loadingBlade.1aceface.gif",
+    "static/media/lotr_Logo.64a8db1c.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/lotr_Logo.64a8db1c.png",
+    "static/media/menuSword.acd87dba.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/menuSword.acd87dba.png",
+    "static/media/fonts.css": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/ringm___-webfont.c69240e7.woff2",
+    "static/media/soundOFF.21cc3456.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/soundOFF.21cc3456.png",
+    "static/media/soundON.cb22b520.png": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/soundON.cb22b520.png",
+    "static/media/swordDraw.121bcafb.mp3": "/Lord-of-The-Rings-Trivia-Graduation-Project-/static/media/swordDraw.121bcafb.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ca368773.js",
+    "static/js/2.e61c68bb.chunk.js",
+    "static/css/main.8fa10901.chunk.css",
+    "static/js/main.c793af65.chunk.js"
+  ]
+}
